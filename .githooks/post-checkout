@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Check if the setup file has been modified
+if git diff --quiet --exit-code -- setup; then
+    echo "No changes to setup file. Skipping setup tool."
+else
+    # Run setup tool
+    ./setup --sync --sync_method fetch
+fi
+
+# Add any other commands you want to execute after checking out
+

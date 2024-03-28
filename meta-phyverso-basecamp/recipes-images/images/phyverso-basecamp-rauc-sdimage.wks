@@ -1,0 +1,11 @@
+#part U-BOOT --source rawcopy --sourceparams="file=u-boot.img" --ondisk mmc --no-table --align ${BOOTLOADER_SEEK}
+part U-BOOT --source rawcopy --sourceparams="file=u-boot.img" --ondisk mmc --no-table --align 0
+
+part --source bootimg-partition --fstype=vfat --label boot0 --ondisk mmc --active --align 4096 --offset 8192 --fixed-size 128
+part --source bootimg-partition --fstype=vfat --label boot1 --ondisk mmc --active --fixed-size 128
+part --source archive --sourceparams="file=config-partition.tar.gz" --fstype=ext4 --label config --ondisk mmc --fixed-size 32
+part / --source rootfs --fstype=ext4 --label root0 --ondisk mmc --use-uuid --fixed-size 1500
+part / --source rootfs --fstype=ext4 --label root1 --ondisk mmc --use-uuid --fixed-size 1500
+part --fstype=ext4 --label factory_defaults --ondisk mmc --use-uuid --fixed-size 64
+part --fstype=ext4 --label overlay --ondisk mmc --use-uuid --fixed-size 4096
+bootloader --timeout=2

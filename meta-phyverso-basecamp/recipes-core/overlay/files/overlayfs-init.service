@@ -1,6 +1,8 @@
 [Unit]
 Description=Create Folders For Overlay Before Mount
 After=overlay.mount
+Before=network-pre.target
+Before=local-fs.target
 DefaultDependencies=no
 
 [Service]

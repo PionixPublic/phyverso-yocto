@@ -57,14 +57,14 @@ active_modules:
         module_id: phyverso_mcu
       hlc:
       - implementation_id: charger
-        module_id: iso15118_charger_1_ac
+        module_id: iso_1_ac
       slac:
       - implementation_id: main
         module_id: slac_1_ac
     module: EvseManager
     telemetry:
       id: 1
-  iso15118_charger_1_ac:
+  iso_1_ac:
     config_module:
       device: seth0
     connections:
@@ -101,7 +101,7 @@ active_modules:
         module_id: phyverso_mcu
       hlc:
       - implementation_id: charger
-        module_id: iso15118_charger_2_dc
+        module_id: iso_2_dc
       slac:
       - implementation_id: main
         module_id: slac_2_dc
@@ -116,11 +116,11 @@ active_modules:
       id: 2
   powersupply_2_dc:
     config_module:
-      can_device: can0
+      can_device: mcu_mcan0
     module: InfyPower_BEG1K075G
   imd_2_dc:
     module: IMDSimulator
-  iso15118_charger_2_dc:
+  iso_2_dc:
     config_module:
       device: seth1
     connections:
@@ -143,7 +143,7 @@ active_modules:
 #
   grid_connection_point:
     config_module:
-      fuse_limit_A: 63
+      fuse_limit_A: 100
       phase_count: 3
     connections:
       energy_consumer:
@@ -175,6 +175,7 @@ active_modules:
         timeout: 120
         token: DEADBEEF
         type: RFID
+        connector_id: 1
     connections:
       evse:
       - implementation_id: evse
@@ -186,6 +187,7 @@ active_modules:
         timeout: 120
         token: DEADBEEF
         type: RFID
+        connector_id: 2
     connections:
       evse:
       - implementation_id: evse
@@ -202,5 +204,9 @@ active_modules:
   phyverso_mcu:          
     module: PhyVersoBSP
     config_module:
+      conn1_max_current_A_import: 16
+      conn1_dc: false
+      conn2_max_current_A_import: 80
+      conn2_dc: true
       serial_port: /dev/ttyS6
 

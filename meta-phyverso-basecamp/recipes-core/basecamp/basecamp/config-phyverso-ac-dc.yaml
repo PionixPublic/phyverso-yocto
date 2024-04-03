@@ -116,7 +116,7 @@ active_modules:
       id: 2
   powersupply_2_dc:
     config_module:
-      can_device: mcu_mcan0
+      can_device: main_mcan0
     module: InfyPower_BEG1K075G
   imd_2_dc:
     module: IMDSimulator

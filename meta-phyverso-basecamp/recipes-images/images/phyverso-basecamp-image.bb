@@ -28,6 +28,7 @@ IMAGE_INSTALL += "\
     canutils \
     htop \
     overlayfs \
+    tmux \
 "
 
 SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"

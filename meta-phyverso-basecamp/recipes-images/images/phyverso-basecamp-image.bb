@@ -29,6 +29,7 @@ IMAGE_INSTALL += "\
     htop \
     overlayfs \
     tmux \
+    reset-phyverso-mcu-service \
 "
 
 SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"

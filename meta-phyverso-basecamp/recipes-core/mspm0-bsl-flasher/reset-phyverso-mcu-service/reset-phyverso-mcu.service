@@ -1,0 +1,9 @@
+[Unit]
+Description=Reset phyVERSO MCU on boot
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/MSPM0_bsl_flasher reset
+
+[Install]
+WantedBy=multi-user.target

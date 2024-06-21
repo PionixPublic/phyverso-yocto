@@ -30,6 +30,7 @@ IMAGE_INSTALL += "\
     overlayfs \
     tmux \
     reset-phyverso-mcu-service \
+    linux-firmware-cc33xx \
 "
 
 SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"

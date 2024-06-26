@@ -18,6 +18,10 @@ S = "${WORKDIR}/git"
 
 inherit cmake
 
+# for now GPIO that were on bank1 move to bank2 when MCU gpios are also used on linux image
+EXTRA_OECMAKE += "-DGPIO_BSL_BANK=2"
+EXTRA_OECMAKE += "-DGPIO_RESET_BANK=2"
+
 do_install() {
     install -d ${D}${bindir}
     install -m 0755 MSPM0_bsl_flasher ${D}${bindir}

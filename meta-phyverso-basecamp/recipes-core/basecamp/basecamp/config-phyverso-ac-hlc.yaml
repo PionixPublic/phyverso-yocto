@@ -128,5 +128,8 @@ active_modules:
   phyverso_mcu:          
     module: PhyVersoBSP
     config_module:
+      reset_gpio_bank: 2
+      conn1_motor_lock_type: 2
+      conn2_motor_lock_type: 1
       serial_port: /dev/ttyS6
 

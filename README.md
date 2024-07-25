@@ -155,6 +155,8 @@ mmc bootbus set single_backward x1 x8 /dev/mmcblk0
 mmc hwreset enable /dev/mmcblk0
 ```
 
+Updating of bootloader and emmc boot partition configuration is also possible from within u-boot shell. This process is described in [here](https://docs.phytec.com/projects/yocto-phycore-am62x/en/bsp-yocto-ampliphy-am62x-pd23.2.1/installos/flashEMMC.html#flash-emmc-from-usb-flash-drive-in-u-boot).
+
 ## Step 5: Flashing the MSPM0
 
 Before trying to flash the MSPM0 via UART from within the linux system, make sure that no other process (e.g. basecamp or phyverso_cli) is currently using the serial `/dev/ttyS6`. 

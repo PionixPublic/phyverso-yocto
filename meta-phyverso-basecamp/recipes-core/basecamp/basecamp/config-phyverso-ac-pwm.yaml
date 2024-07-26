@@ -37,7 +37,6 @@ active_modules:
       ac_nominal_voltage: 230
       charge_mode: AC
       connector_id: 1
-      country_code: DE
       ev_receipt_required: false
       evse_id: DE*PNX*E12345*1
       has_ventilation: true
@@ -48,7 +47,6 @@ active_modules:
       session_logging: true
       session_logging_path: /tmp/everest-logs
       session_logging_xml: false
-      three_phases: true
     connections:
       bsp:
         - implementation_id: connector_1

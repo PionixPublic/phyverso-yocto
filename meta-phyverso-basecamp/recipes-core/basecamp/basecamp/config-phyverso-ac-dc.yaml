@@ -49,7 +49,6 @@ active_modules:
       payment_enable_eim: true
       session_logging: true
       session_logging_path: /tmp/logs
-      three_phases: true
       connector_id: 1
     connections:
       bsp:
@@ -93,7 +92,6 @@ active_modules:
       payment_enable_eim: true
       session_logging: true
       session_logging_path: /tmp/logs
-      three_phases: true
       connector_id: 2
     connections:
       bsp:

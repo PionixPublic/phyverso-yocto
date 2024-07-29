@@ -75,8 +75,6 @@ active_modules:
     config_implementation:
       main:
         device: seth0
-        evse_id: DE*PNX*E1234567*1
-        nid: pionix1
         number_of_sounds: 10
         link_status_detection: true
     connections: {}
@@ -130,8 +128,6 @@ active_modules:
     config_implementation:
       main:
         device: seth1
-        evse_id: DE*PNX*E1234567*2
-        nid: pionix2
         number_of_sounds: 10
         link_status_detection: true
     connections: {}

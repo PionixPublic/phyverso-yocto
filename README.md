@@ -90,8 +90,14 @@ $ bitbake phyverso-basecamp-bundle
 Depending on your computer you might need to go for a coffee a walk or both.
 
 ## Step 4: Flash the image or the bundle on your target
+If the pre-installed image on the SOM provides RAUC support you can install the bundle from within linux by executing:
 
-Currently the only supported method is to flash via u-boot from a USB drive.
+```console
+rauc install <URL or path to bundle file>
+```
+
+
+In case the currently installed linux image on the SOM does not support RAUC updates, you can also flash a new wic image via USB.
 Use one partition only on the USB drive and format it with ext4.
 
 Uncompress the image if neccessary, e.g.:
@@ -156,6 +162,13 @@ mmc hwreset enable /dev/mmcblk0
 ```
 
 Updating of bootloader and emmc boot partition configuration is also possible from within u-boot shell. This process is described in [here](https://docs.phytec.com/projects/yocto-phycore-am62x/en/bsp-yocto-ampliphy-am62x-pd23.2.1/installos/flashEMMC.html#flash-emmc-from-usb-flash-drive-in-u-boot).
+
+When flashing via USB the system will fail to boot because the flashing process can not fully write the overlay partition on ```/dev/mmcblk0p8```. On first boot into your new linux image you will be put into an emergency shell where you can format said partition and the system will boot normally afterwards (and after ```exit```ing from the emergency shell). So execute the following from within the emergency shell:
+
+```console
+mkfs.ext4 /dev/mmcblk0p8
+exit
+```
 
 ## Step 5: Flashing the MSPM0
 

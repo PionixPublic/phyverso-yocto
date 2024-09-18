@@ -103,7 +103,7 @@ Use one partition only on the USB drive and format it with ext4.
 Uncompress the image if neccessary, e.g.:
 
 ```console
-unxz phyverso-basecamp-image-am62-ksp0728-1.wic.xz
+unxz phyverso-basecamp-image-am62-phyverso-evcs-1.wic.xz
 ```
 
 Then copy the image file (.wic) onto the USB drive and insert it into the one USB port on the phyverso.
@@ -114,20 +114,14 @@ Now flash in the u-boot shell:
 ```console
 usb start
 run flash_emmc
+setenv wic_image phyverso-basecamp-image-am62-phyverso-evcs-1.wic
 ```
 
-If your file is not named phyverso-basecamp-image-am62-ksp0728-1.wic, you can set a different file name before flashing:
-
-```console
-setenv wic_image myfilename.wic
-```
-
-If you do not have the flash_emm script, add it to the environment by copying this into u-boot shell:
+If you do not have the flash_emmc script, add it to the environment by copying this into u-boot shell:
 
 ```console
 setenv flash_emmc 'test -n ${BOOT_ORDER} || setenv BOOT_ORDER system0 system1;test -n ${BOOT_system0_LEFT} || setenv BOOT_system0_LEFT 3;ext4size usb 0:1 ${wic_image};setenv counter 0;setenv offset 0;setenv block_number 0x2000;setexpr bytes_left ${filesize} - ${offset};echo start: ${bytes_left};while itest ${bytes_left}  > 0;do echo rest: ${bytes_left};setexpr copy_bytes ${block_number} * 0x200;ext4load usb 0:1 0xa0000000 ${wic_image} ${copy_bytes} ${offset};mmc write 0xa0000000 ${counter} ${block_number};             setexpr counter ${counter} + ${block_number};setexpr offset ${offset} + ${copy_bytes};echo ${counter};echo ${offset};if itest ${bytes_left} < ${copy_bytes}; then setenv bytes_left 0;else setexpr bytes_left ${bytes_left} - ${copy_bytes};fi;done;'
 ```
-
 
 Writing is really fast. Once done, reset the board, it should now boot into the newly installed image.
 
@@ -187,7 +181,7 @@ scp Debug/phyverso-firmware.bin root@192.168.3.11:/root/
 Assuming you transfered the binary to /root/ you can then flash the firmware using the `MSPM0_bsl_flasher` tool from within the phyverso linux system.
 
 ```console
-MSPM0_bsl_flasher /dev/ttyS6 phyverso-firmware.bin 1
+MSPM0_bsl_flasher flash -i <path to firmware bin> -p /dev/ttyS6
 ```
 
 Depending on the debug flags of the currently employed `MSPM0_bsl_flasher` version on target you should see a similiar output at the end of a successful flashing process:
@@ -199,6 +193,6 @@ Status:
         Started: 1
 ```
 
-The `MSPM0_bsl_flasher` tool automatically starts the application after successful flashing. You can also check if flashing was successful by running `phyverso_cli /dev/ttyS6` and check if you receive state updates.
+The `MSPM0_bsl_flasher` tool automatically starts the application after successful flashing. You can also check if flashing was successful by running `phyverso_cli /dev/ttyS6 /etc/everest/example_config_qwello.json` and check if you receive state updates.
 
 In case of errors try repeating the flashing process and make sure serial is not used by other processes. Also make sure that no other device is actively or passively in control of the nRST or BSL pins. It is a known problem that a XDS110 debugging probe that is attached to the uC target but not plugged into USB is preventing a successful connection to the BSL device or any other startup.

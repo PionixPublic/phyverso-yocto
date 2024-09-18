@@ -113,8 +113,8 @@ Now flash in the u-boot shell:
 
 ```console
 usb start
-run flash_emmc
 setenv wic_image phyverso-basecamp-image-am62-phyverso-evcs-1.wic
+run flash_emmc
 ```
 
 If you do not have the flash_emmc script, add it to the environment by copying this into u-boot shell:

@@ -1,0 +1,11 @@
+[Unit]
+Description=Update MCU firmware on boot if needed and reset MCU
+Before=basecamp.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/MSPM0_bsl_flasher flash --serial-port /dev/ttyS6 --firmware-file /usr/lib/firmware/phyverso-firmware.bin
+ExecStart=/usr/bin/MSPM0_bsl_flasher reset
+
+[Install]
+WantedBy=multi-user.target

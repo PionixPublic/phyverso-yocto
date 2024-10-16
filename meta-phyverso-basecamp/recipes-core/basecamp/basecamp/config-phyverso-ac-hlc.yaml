@@ -19,8 +19,6 @@ active_modules:
       token_validator:
       - module_id: token_validator
         implementation_id: main
-#      - module_id: whitelist
-#        implementation_id: token_validator
       evse_manager:
       - module_id: evse_manager
         implementation_id: evse
@@ -124,8 +122,11 @@ active_modules:
   phyverso_mcu:          
     module: PhyVersoBSP
     config_module:
+      conn1_max_current_A_import: 16
+      conn1_max_phase_count_import: 1
+      conn1_dc: false
       reset_gpio_bank: 2
-      conn1_motor_lock_type: 2
+      conn1_motor_lock_type: 1
       conn2_motor_lock_type: 1
       serial_port: /dev/ttyS6
 

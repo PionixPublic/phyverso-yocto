@@ -203,7 +203,7 @@ active_modules:
       conn2_max_current_A_import: 80
       conn2_dc: true
       reset_gpio_bank: 2
-      conn1_motor_lock_type: 2
+      conn1_motor_lock_type: 1
       conn2_motor_lock_type: 1
       serial_port: /dev/ttyS6
 

@@ -12,6 +12,7 @@ LICENSE = "MIT"
 IMAGE_INSTALL += "\
     packagegroup-machine-base \
     basecamp \
+    basecamp-config \
     basecamp-service \
     mosquitto \
     tzdata \

@@ -122,7 +122,7 @@ active_modules:
         validation_result: Accepted
     connections: {}
     module: DummyTokenValidator
-  phyverso_mcu:          
+  phyverso_mcu:
     module: PhyVersoBSP
     config_module:
       conn1_max_current_A_import: 16

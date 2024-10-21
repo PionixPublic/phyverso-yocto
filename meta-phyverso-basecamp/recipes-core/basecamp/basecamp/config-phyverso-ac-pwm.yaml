@@ -54,6 +54,9 @@ active_modules:
       ac_rcd:
         - implementation_id: rcd_1
           module_id: phyverso_mcu
+      connector_lock:
+      - implementation_id: connector_lock_1
+        module_id: phyverso_mcu
     module: EvseManager
     telemetry:
       id: 1

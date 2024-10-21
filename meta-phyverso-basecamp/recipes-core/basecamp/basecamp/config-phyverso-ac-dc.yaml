@@ -60,6 +60,9 @@ active_modules:
       slac:
       - implementation_id: main
         module_id: slac_1_ac
+      connector_lock:
+      - implementation_id: connector_lock_1
+        module_id: phyverso_mcu
     module: EvseManager
     telemetry:
       id: 1

@@ -11,24 +11,21 @@ remotes = [
     {"name": "github-ssh",   "url": "ssh://git@github.com"},
     {"name": "phytec-ssh",   "url": "ssh://git@git.phytec.de"},
     {"name": "phytec-git",   "url": "git://git.phytec.de"},
+    {"name": "phytec-github", "url": "ssh://git@github.com/phytec"},
 ]
 
 layers = [
-    {"rev":"9dc6673d41044f1174551120ce63501421dbcd85",  "branch":"kirkstone",  "repo":"meta-raspberrypi",                 "path":"meta-raspberrypi",   "remote":"yocto"},
-    {"rev":"82e167a7f13161a4ee9c5a426f13df79987d1055",  "branch":"kirkstone",  "repo":"meta-flutter/meta-flutter",        "path":"meta-flutter",       "remote":"github"},
-    {"rev":"312ff1c39b1bf5d35c0321e873417eb013cea477",  "branch":"kirkstone",  "repo":"kraj/meta-clang",                  "path":"meta-clang",         "remote":"github"},
-
-
-    {"rev":"refs/tags/BSP-Yocto-Ampliphy-AM62x-PD23.2.1", "branch":"kirkstone",  "repo":"meta-phytec",                  "path":"meta-phytec",       "remote":"phytec-git"},
-    {"rev":"refs/tags/BSP-Yocto-Ampliphy-AM62x-PD23.2.1", "branch":"kirkstone",  "repo":"meta-ampliphy",                  "path":"meta-ampliphy",       "remote":"phytec-git"},
-    {"rev":"ed3b8e3559b83ee5071f4bc11f00361b3c279117",  "branch":"kirkstone",  "repo":"phytec/meta-summit-radio",         "path":"meta-summit-radio",   "remote":"github"},
-    {"rev":"b6f6c729453cb88961488e3332046517e2fe99bb",  "branch":"kirkstone",  "repo":"poky",                             "path":"poky",               "remote":"yocto"},
-    {"rev":"8bb16533532b6abc2eded7d9961ab2a108fd7a5b",  "branch":"kirkstone",  "repo":"meta-openembedded",                "path":"meta-openembedded",  "remote":"openembedded"},
-    {"rev":"ed6dc67ffb143a4c4fac01e0b7e8a60fc6260b85",  "branch":"kirkstone",  "repo":"rauc/meta-rauc",                   "path":"meta-rauc",          "remote":"github"},
-    {"rev":"d7b7b6fb6c7c5545e718e44f38853d1718ce5446",  "branch":"kirkstone",  "repo":"meta-arm",                         "path":"meta-arm",           "remote":"yocto"},
-    {"rev":"refs/tags/09.02.00.009",                    "branch":"kirkstone",  "repo":"meta-ti",                          "path":"meta-ti",            "remote":"yocto"},
-    {"rev":"1a3e42cedbd94ca73be45800d0e902fec35d0f0f",  "branch":"kirkstone",  "repo":"meta-security",                    "path":"meta-security",      "remote":"yocto"},
-    {"rev":"aef83858e7e9e06ddd326e03d3d4b2cdbc5fe0df",  "branch":"phyverso-evcs",  "repo":"PionixPro/meta-ksp0728",           "path":"meta-ksp0728",       "remote":"github-ssh"},
+    {"rev":"refs/tags/BSP-Yocto-Ampliphy-AM62x-PD23.2.1", "branch":"kirkstone",  "repo":"meta-phytec",                    "path":"meta-phytec",             "remote":"phytec-git"},
+    {"rev":"refs/tags/BSP-Yocto-Ampliphy-AM62x-PD23.2.1", "branch":"kirkstone",  "repo":"meta-ampliphy",                  "path":"meta-ampliphy",           "remote":"phytec-git"},
+    {"rev":"ed3b8e3559b83ee5071f4bc11f00361b3c279117",  "branch":"kirkstone",  "repo":"phytec/meta-summit-radio",         "path":"meta-summit-radio",       "remote":"github"},
+    {"rev":"b6f6c729453cb88961488e3332046517e2fe99bb",  "branch":"kirkstone",  "repo":"poky",                             "path":"poky",                    "remote":"yocto"},
+    {"rev":"8bb16533532b6abc2eded7d9961ab2a108fd7a5b",  "branch":"kirkstone",  "repo":"meta-openembedded",                "path":"meta-openembedded",       "remote":"openembedded"},
+    {"rev":"ed6dc67ffb143a4c4fac01e0b7e8a60fc6260b85",  "branch":"kirkstone",  "repo":"rauc/meta-rauc",                   "path":"meta-rauc",               "remote":"github"},
+    {"rev":"d7b7b6fb6c7c5545e718e44f38853d1718ce5446",  "branch":"kirkstone",  "repo":"meta-arm",                         "path":"meta-arm",                "remote":"yocto"},
+    {"rev":"refs/tags/09.02.00.009",                    "branch":"kirkstone",  "repo":"meta-ti",                          "path":"meta-ti",                 "remote":"yocto"},
+    {"rev":"06c240c3c235fa06fe724e278d53463ac67cc26b",  "branch":"kirkstone",  "repo":"meta-security",                    "path":"meta-security",           "remote":"yocto"},
+    {"rev":"4afc9c47232d1325383b7cdc0ac5641bbcc86696",  "branch":"kirkstone",  "repo":"meta-phyverso-evcs",               "path":"meta-phyverso-evcs",      "remote":"phytec-github"},
+    {"rev":"dfc364b932a783ddb294e6a6cc562ce38b4bfaff",  "branch":"kirkstone",  "repo":"meta-lumissil-greenphy",           "path":"meta-lumissil-greenphy",       "remote":"phytec-github"},
     {"rev":"fc882c42ee43a51e9bbd9d93ebfc3c237f49b02a",  "branch":"kirkstone-release/0.4",  "repo":"PionixPro/meta-basecamp",          "path":"meta-basecamp",      "remote":"github-ssh"},
 ]
 

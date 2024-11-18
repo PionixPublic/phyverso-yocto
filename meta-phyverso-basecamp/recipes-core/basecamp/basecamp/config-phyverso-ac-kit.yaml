@@ -30,8 +30,8 @@ active_modules:
     module: EnergyManager
   evse_manager:
     config_module:
-      ac_enforce_hlc: true
-      ac_hlc_enabled: true
+      ac_enforce_hlc: false
+      ac_hlc_enabled: false
       ac_hlc_use_5percent: true
       ac_nominal_voltage: 230
       ac_with_soc: false
@@ -59,6 +59,9 @@ active_modules:
       connector_lock:
       - implementation_id: connector_lock_1
         module_id: phyverso_mcu
+      powermeter_grid_side:
+      - implementation_id: main
+        module_id: power_meter
     module: EvseManager
     telemetry:
       id: 1
@@ -128,8 +131,30 @@ active_modules:
       conn1_max_current_A_import: 16
       conn1_max_phase_count_import: 1
       conn1_dc: false
-      reset_gpio_bank: 2
+      # reset_gpio_bank:2
+      # reset_gpio_pin: 6
       conn1_motor_lock_type: 1
       conn2_motor_lock_type: 1
       serial_port: /dev/ttyS6
-
+      conn1_gpio_stop_button_enabled: true
+      conn1_gpio_stop_button_bank: gpiochip1
+      conn1_gpio_stop_button_pin: 36
+  serial_comm_hub:
+    module: SerialCommHub
+    config_implementation:
+      main:
+        serial_port: /dev/ttyS4
+        baudrate: 9600
+        rxtx_gpio_line: 44
+        rxtx_gpio_chip: gpiochip2
+        rxtx_gpio_tx_high: true
+  power_meter:
+    module: GenericPowermeter
+    connections:
+      serial_comm_hub:
+      - module_id: serial_comm_hub
+        implementation_id: main
+    config_implementation:
+      main:
+        model: "Eastron_SDM230"
+        powermeter_device_id: 1

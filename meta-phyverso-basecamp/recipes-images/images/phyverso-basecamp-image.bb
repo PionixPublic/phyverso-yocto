@@ -32,6 +32,7 @@ IMAGE_INSTALL += "\
     tmux \
     phyverso-mcu-bringup-service \
     phyverso-firmware \
+    basecamp-phyverso-config \
 "
 
 SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"

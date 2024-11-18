@@ -1,5 +1,26 @@
 
 # Change Log
+
+## [alpha-5.0] - 2024-11-18
+ 
+### Release files
+- http://pionix-update.de/phyverso/alpha-5.0/phyverso-basecamp-bundle-am62-phyverso-evcs-20241118094011.raucb
+- http://pionix-update.de/phyverso/alpha-5.0/phyverso-basecamp-image-am62-phyverso-evcs-20241118094011.rootfs.partup
+- http://pionix-update.de/phyverso/alpha-5.0/phyverso-basecamp-image-am62-phyverso-evcs-20241118094011.rootfs.wic.bmap
+- http://pionix-update.de/phyverso/alpha-5.0/phyverso-basecamp-image-am62-phyverso-evcs-20241118094011.rootfs.wic.xz
+ 
+### Added
+
+- adds soft-stop button functionality on IN_1/IN_2 inputs on X43 (externaly attached pull resistors needed on input pins!)
+- adds Eastron SDM230 1phase powermeter to AC kit configuration
+
+### Changed
+
+- Basecamp version bumped to 1.0-rc2
+
+### Fixed
+
+---
  
 ## [alpha-4.0] - 2024-10-21
  

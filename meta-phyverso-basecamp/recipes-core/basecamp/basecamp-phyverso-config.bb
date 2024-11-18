@@ -1,3 +1,8 @@
+DESCRIPTION = "phyVERSO specific Basecamp configurations"
+LICENSE = "CLOSED"
+
+RDEPENDS:${PN}="basecamp"
+
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 SRC_URI:append = " \
@@ -11,7 +16,7 @@ FILES:${PN} += " \
                 ${sysconfdir}/everest/* \
                "
 
-do_install:append() {
+do_install() {
     install -d ${D}${sysconfdir}/everest/
     install -m 0644 ${WORKDIR}/config-phyverso-ac-hlc.yaml ${D}${sysconfdir}/everest/
     install -m 0644 ${WORKDIR}/config-phyverso-ac-pwm.yaml ${D}${sysconfdir}/everest/

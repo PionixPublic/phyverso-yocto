@@ -1,11 +1,32 @@
-def get_layer_rev(d):
-    return bb.process.run('git rev-parse HEAD')
+BUILD_TAG ~= "UNTAGGED"
 
-OS_RELEASE_FIELDS += "BUILD_VERSION"
-OS_RELEASE_FIELDS += "LAYER_REV"
-BUILD_VERSION = "1.0.0"
-LAYER_REV="${@get_layer_rev(d)[0].rstrip()}"
+def run_git(d, cmd):
+    try:
+        oeroot = d.getVar('COREBASE', True)
+        return bb.process.run("git --work-tree %s/../../phyverso-yocto/ --git-dir %s/../../phyverso-yocto/.git %s"
+            % (oeroot, oeroot, cmd))[0].strip('\n')
+    except:
+        pass
+
+python() {
+    layer_rev = run_git(d, 'rev-parse HEAD')
+    if layer_rev:
+        d.setVar('LAYER_REV', layer_rev)
+
+    build_tag = run_git(d, 'describe --abbrev=0')
+    if build_tag:
+        d.setVar('BUILD_TAG', build_tag)
+}
+
+OS_RELEASE_FIELDS:append = " BUILD_ID BUILD_TAG LAYER_REV"
+
 VERSION = "BaseCamp phyVERSO-EVCS ${BUILD_VERSION} ${LAYER_REV}${@' (%s)' % DISTRO_CODENAME if 'DISTRO_CODENAME' in d else ''}"
 
 # Ensure the git commands run every time bitbake is invoked.
 BB_DONT_CACHE = "1"
+
+do_compile[nostamp] = "1"
+do_install[nostamp] = "1"
+
+# Make os-release available to other recipes.
+SYSROOT_DIRS:append = " ${sysconfdir}"

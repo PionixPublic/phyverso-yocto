@@ -1,0 +1,3 @@
+RPROVIDES:${PN} = ""
+RREPLACES:${PN} = ""
+RCONFLICTS:${PN} = ""

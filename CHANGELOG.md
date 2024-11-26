@@ -1,6 +1,28 @@
 
 # Change Log
 
+## [1.0.0] - 2024-11-26
+
+### Release files
+- http://pionix-update.de/phyverso/1.0.0/phyverso-basecamp-bundle-am62-phyverso-evcs-20241126102303.raucb
+- http://pionix-update.de/phyverso/1.0.0/phyverso-basecamp-image-am62-phyverso-evcs-20241126102303.rootfs.partup
+- http://pionix-update.de/phyverso/1.0.0/phyverso-basecamp-image-am62-phyverso-evcs-20241126102303.rootfs.wic.bmap
+- http://pionix-update.de/phyverso/1.0.0/phyverso-basecamp-image-am62-phyverso-evcs-20241126102303.rootfs.wic.xz
+- SDK (for PHYTEC only!): http://pionix-update.de/phyverso/1.0.0/phytec-ampliphy-rauc-glibc-x86_64-phyverso-basecamp-image-aarch64-toolchain-BSP-Yocto-Ampliphy-AM62x-PD23.2.1-phyVERSO-EVCS.sh
+
+### Added
+
+- adds phyverso-yocto repo git hash to /etc/os-release to keep track of which exact build is flashed to targets
+- adds phyverso-yocto repo tag if present to /etc/os-release
+
+### Changed
+
+- everest-framework patch for BaseCamp banner on boot as requested by PHYTEC
+
+### Fixed
+
+---
+
 ## [alpha-5.0] - 2024-11-18
  
 ### Release files

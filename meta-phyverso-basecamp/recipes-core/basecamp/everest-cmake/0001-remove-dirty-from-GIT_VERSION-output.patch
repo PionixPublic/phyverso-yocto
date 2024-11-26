@@ -1,0 +1,23 @@
+From 4a1b186b40dca6c68f2382d769c451bae6dadd63 Mon Sep 17 00:00:00 2001
+From: Jonas Rockstroh <jonas.rockstroh@pionix.de>
+Date: Tue, 26 Nov 2024 15:55:48 +0100
+Subject: [PATCH] remove -dirty from GIT_VERSION output
+
+Signed-off-by: Jonas Rockstroh <jonas.rockstroh@pionix.de>
+---
+ version-information.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/version-information.cmake b/version-information.cmake
+index 3ffb9b2..640eb27 100644
+--- a/version-information.cmake
++++ b/version-information.cmake
+@@ -4,7 +4,7 @@ set(EVEREST_VERSION_INFORMATION_TXT_IN "${CMAKE_CURRENT_LIST_DIR}/assets/version
+ function (evc_generate_version_information)
+     execute_process(
+         COMMAND
+-            git describe --dirty --always --tags
++            git describe --always --tags
+         WORKING_DIRECTORY
+             ${PROJECT_SOURCE_DIR}
+         OUTPUT_VARIABLE

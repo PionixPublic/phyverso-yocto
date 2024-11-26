@@ -1,4 +1,4 @@
-BUILD_TAG ~= "UNTAGGED"
+BUILD_TAG ??= "UNTAGGED"
 
 def run_git(d, cmd):
     try:
@@ -13,20 +13,18 @@ python() {
     if layer_rev:
         d.setVar('LAYER_REV', layer_rev)
 
-    build_tag = run_git(d, 'describe --abbrev=0')
+    build_tag = run_git(d, 'describe --tags --exact-match')
     if build_tag:
         d.setVar('BUILD_TAG', build_tag)
 }
 
 OS_RELEASE_FIELDS:append = " BUILD_ID BUILD_TAG LAYER_REV"
 
-VERSION = "BaseCamp phyVERSO-EVCS ${BUILD_VERSION} ${LAYER_REV}${@' (%s)' % DISTRO_CODENAME if 'DISTRO_CODENAME' in d else ''}"
+VERSION = "BaseCamp phyVERSO-EVCS ${BUILD_TAG} ${@'(%s)' % DISTRO_CODENAME if 'DISTRO_CODENAME' in d else ''}"
+PRETTY_NAME = "${VERSION}"
 
 # Ensure the git commands run every time bitbake is invoked.
 BB_DONT_CACHE = "1"
 
 do_compile[nostamp] = "1"
 do_install[nostamp] = "1"
-
-# Make os-release available to other recipes.
-SYSROOT_DIRS:append = " ${sysconfdir}"

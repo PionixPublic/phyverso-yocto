@@ -20,6 +20,7 @@
 - everest-framework patch for BaseCamp banner on boot as requested by PHYTEC
 
 ### Fixed
+- fixes partup partitioning in meta-phyverso-evcs
 
 ---
 

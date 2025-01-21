@@ -59,7 +59,7 @@ $ ./setup --init
 The tool will run and sync the repositories. 
 Eventually, if you make any changes to the layers or somebody made changes and you want to sync those changes locally you run it with the option `--sync`. This allows you to sync locally the changes made in the upstream. If you made changes as well to the layers you want to sync, you might want to specify how to sync (`fetch` or `pull`) so that you can have the possibility to rebase or merge the changes. By default the method is `fetch` if no argument is provided.
 
-## Step 3: Build the image
+## Step 3: Build the image and SDK
 The PhyVerso repo comes with a build directory (containing only the config folder).
 In the config folder there is a default configuration file `local.conf` and the layers configuration `bblayers.conf`.
 
@@ -112,6 +112,12 @@ $ bitbake phyverso-basecamp-bundle
 ```
 
 Depending on your computer you might need to go for a coffee a walk or both.
+
+### Building the SDK
+After sourcing the yocto environment you can also build an SDK by executing
+```
+$ bitbake phyverso-basecamp-image -c populate_sdk
+```
 
 ## Step 4: Flash the image or the bundle on your target
 If the pre-installed image on the SOM provides RAUC support you can install the bundle from within linux by executing:

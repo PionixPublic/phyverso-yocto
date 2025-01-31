@@ -1,4 +1,4 @@
-# How to use PhyVerso and build an Yocto image with basecamp
+# How to use phyVerso and build a Yocto image with basecamp
 
 ## Step 0: Preparations when using git.pionix.com
 If you are using git.pionix.com to access this repository, you will have to add your SSH keys at https://git.pionix.com/user/settings/keys.

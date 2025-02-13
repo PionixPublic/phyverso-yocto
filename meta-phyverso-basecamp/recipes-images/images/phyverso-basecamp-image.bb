@@ -1,43 +1,7 @@
-require recipes-images/images/phytec-headless-image.bb
+require recipes-images/images/phyverso-basecamp-base.bb
+SUMMARY =  "Image for phyVERSO, no specific charging hardware configuration"
 
-SUMMARY =  "This image is designed to contain a complete everest install for phyverso"
-
-IMAGE_FEATURES += "\
-    splash \
-    ssh-server-openssh \
-"
-
-LICENSE = "MIT"
-
-IMAGE_INSTALL += "\
-    packagegroup-machine-base \
-    basecamp \
-    basecamp-config \
-    basecamp-service \
-    mosquitto \
-    tzdata \
-    lms-eth2spi \
-    open-plc-utils \
-    cg5317-utils \
-    mspm0-bsl-flasher \
-    packagegroup-update \
-    packagegroup-rt \
-    packagegroup-core-boot \
-    packagegroup-sks-openssl-tpm2 \
-    rauc \
-    tcpdump \
-    canutils \
-    htop \
-    overlayfs \
-    tmux \
-    phyverso-mcu-bringup-service \
-    phyverso-firmware \
-    basecamp-phyverso-config \
-"
-
-SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"
-#IMAGE_ROOTFS_EXTRA_SPACE:append = " + 500000"
-
-IMAGE_INSTALL:append_am62 = " firmwared"
-
-WKS_FILE:forcevariable = "phyverso-basecamp-rauc-sdimage.wks"
+add_config_symlink() {
+    ln -s -r ${IMAGE_ROOTFS}/etc/everest/config-phyverso-template.yaml ${IMAGE_ROOTFS}/etc/everest/basecamp.yaml
+}
+ROOTFS_POSTPROCESS_COMMAND:append = " add_config_symlink; "

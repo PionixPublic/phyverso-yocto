@@ -1,0 +1,422 @@
+settings:
+  telemetry_enabled: true
+active_modules:
+  persistent_store:
+    module: PersistentStore
+    config_module:
+      sqlite_db_file_path: /etc/everest/everest_persistent_store.db
+    connections: {}
+
+  setup:
+    config_module:
+      localization: true
+      setup_simulation: false
+      setup_wifi: true
+    connections:
+      store:
+      - module_id: persistent_store
+        implementation_id: main
+    module: Setup
+
+  api:
+    connections:
+      evse_manager:
+      # uncomment unused evse_managers
+      - implementation_id: evse
+        module_id: evse_manager_port1
+      - implementation_id: evse
+        module_id: evse_manager_port2
+    module: API
+
+  auth:
+    module: Auth
+    config_module:
+      connection_timeout: 10
+      selection_algorithm: PlugEvents
+    connections:
+      token_provider:
+      # uncomment unused token_providers
+      - module_id: token_provider_port1
+        implementation_id: main
+      - module_id: token_provider_port2
+        implementation_id: main
+      token_validator:
+      - module_id: token_validator
+        implementation_id: main
+      evse_manager:
+      # uncomment unused evse_managers
+      - module_id: evse_manager_port1
+        implementation_id: evse
+      - module_id: evse_manager_port2
+        implementation_id: evse
+
+  energy_manager:
+    connections:
+      energy_trunk:
+      - implementation_id: energy_grid
+        module_id: grid_connection_point
+    module: EnergyManager
+
+  grid_connection_point:
+    config_module:
+      fuse_limit_A: 63
+      phase_count: 3
+    connections:
+      energy_consumer:
+      # uncomment unused evse_managers
+      - implementation_id: energy_grid
+        module_id: evse_manager_port1
+      - implementation_id: energy_grid
+        module_id: evse_manager_port2
+    module: EnergyNode
+
+  evse_security:
+    module: EvseSecurity
+
+  token_validator:
+    config_implementation:
+      main:
+        sleep: 0.25
+        validation_reason: Token seems valid
+        validation_result: Accepted
+    connections: {}
+    module: DummyTokenValidator
+
+  phyverso_mcu:
+    module: PhyVersoBSP
+    config_module:
+      ### General
+      serial_port: /dev/ttyS6
+      ### Port 1 config
+      conn1_max_current_A_import: 16
+      conn1_max_phase_count_import: 1
+      conn1_dc: true # set to "true" if evse_manager_port1 is for DC config; false for AC
+      conn1_motor_lock_type: 1
+      conn1_gpio_stop_button_enabled: false
+      conn1_gpio_stop_button_bank: gpiochip1
+      conn1_gpio_stop_button_pin: 36
+      ### Port 2 config
+      conn2_max_current_A_import: 16
+      conn2_max_phase_count_import: 1
+      conn2_dc: true # set to "true" if evse_manager_port1 is for DC config; false for AC
+      conn2_motor_lock_type: 1
+      conn2_gpio_stop_button_enabled: false
+      conn2_gpio_stop_button_bank: gpiochip1
+      conn2_gpio_stop_button_pin: 37
+
+### BEGIN
+# RS485 Config
+# PLEASE COMMENT OUT FOLLOWING BLOCK IF NO RS485 devices used
+###
+  serial_comm_hub:
+    module: SerialCommHub
+    config_implementation:
+      main:
+        serial_port: /dev/ttyS4
+        baudrate: 9600 # you will have to adjust this to suit the configuration of the devices on the bus
+        rxtx_gpio_line: 44
+        rxtx_gpio_chip: gpiochip2
+        rxtx_gpio_tx_high: true
+### END
+# RS485 Config
+###
+
+################### PORT 1 ###################
+
+### BEGIN
+# Token providers for port 1
+# COMMENT OUT FOLLOWING BLOCK IF UNUSED
+###
+  token_provider_port1:
+    config_implementation:
+      main:
+        timeout: 10
+        token: DEADBEEF
+        type: RFID
+    connections:
+      evse:
+      - implementation_id: evse
+        module_id: evse_manager_port1
+    module: DummyTokenProvider
+### END
+# Token providers for port 1
+###
+
+### BEGIN
+# ISO / SLAC config for port 1
+# -> this can be used for AC or DC configs
+# PLEASE COMMENT OUT FOLLOWING BLOCK IF NO ISO/HLC USED ON PORT 1
+###
+  iso_port1:
+    config_module:
+      device: seth0
+    connections:
+      security:
+      - implementation_id: main
+        module_id: evse_security
+    module: EvseV2G
+  slac_port1:
+    config_implementation:
+      main:
+        device: seth0
+        number_of_sounds: 10
+        link_status_detection: true
+    connections: {}
+    module: EvseSlac
+### END
+# ISO / SLAC config for port 1
+###
+
+### BEGIN
+# EVSE Manager AC config for port 1
+# PLEASE COMMENT OUT FOLLOWING BLOCK IF UNUSED OR DC CONFIG USED FOR PORT 1
+###
+#  evse_manager_port1:
+#    config_module:
+#      ac_enforce_hlc: true
+#      ac_hlc_enabled: true
+#      ac_hlc_use_5percent: true
+#      ac_nominal_voltage: 230
+#      charge_mode: AC
+#      evse_id: DE*PNX*E1234567*1
+#      payment_enable_contract: false
+#      payment_enable_eim: true
+#      session_logging: true
+#      session_logging_path: /tmp/logs
+#      connector_id: 1
+#    connections:
+#      bsp:
+#      - implementation_id: connector_1
+#        module_id: phyverso_mcu
+#      connector_lock:
+#      - implementation_id: connector_lock_1
+#        module_id: phyverso_mcu
+#      hlc:
+#      - implementation_id: charger
+#        module_id: iso_port1
+#      slac:
+#      - implementation_id: main
+#        module_id: slac_port1
+#      # uncomment and establish connection to your configured powermeter for port 1 here
+#      #powermeter_grid_side:
+#      #- implementation_id: main
+#      #  module_id: power_meter_port1
+#    module: EvseManager
+#    telemetry:
+#      id: 1
+### END
+# EVSE Manager AC config for port 1
+###
+
+### BEGIN
+# EVSE Manager DC config for port 2
+# PLEASE COMMENT OUT FOLLOWING BLOCK IF UNUSED OR AC CONFIG USED FOR PORT 2
+###
+  evse_manager_port1:
+    config_module:
+      charge_mode: DC
+      evse_id: DE*PNX*E1234567*1
+      payment_enable_contract: false
+      payment_enable_eim: true
+      session_logging: true
+      session_logging_path: /tmp/logs
+      connector_id: 1
+    connections:
+      bsp:
+      - implementation_id: connector_1
+        module_id: phyverso_mcu
+      hlc:
+      - implementation_id: charger
+        module_id: iso_port1
+      slac:
+      - implementation_id: main
+        module_id: slac_port1
+      # establish connections to your PSU/IMD/Meter here
+      powersupply_DC:
+        - module_id: powersupply_port1
+          implementation_id: main
+      imd:
+        - module_id: imd_port1
+          implementation_id: main
+      powermeter_car_side:
+        - module_id: powersupply_port1
+          implementation_id: powermeter
+    module: EvseManager
+    telemetry:
+      id: 1
+### END
+# EVSE Manager DC config for port 2
+###
+
+################### PORT 2 ###################
+
+### BEGIN
+# Token providers for port 2
+# COMMENT OUT FOLLOWING BLOCK IF UNUSED
+###
+  token_provider_port2:
+    config_implementation:
+      main:
+        timeout: 10
+        token: DEADBEEF
+        type: RFID
+    connections:
+      evse:
+      - implementation_id: evse
+        module_id: evse_manager_port2
+    module: DummyTokenProvider
+### END
+# Token providers for port 2
+###
+
+### BEGIN
+# ISO / SLAC config for port 2
+# -> this can be used for AC or DC configs
+# PLEASE COMMENT OUT FOLLOWING BLOCK IF NO ISO/HLC USED ON PORT 2
+###
+  iso_port2:
+    config_module:
+      device: seth1
+    connections:
+      security:
+      - implementation_id: main
+        module_id: evse_security
+    module: EvseV2G
+  slac_port2:
+    config_implementation:
+      main:
+        device: seth1
+        number_of_sounds: 10
+        link_status_detection: true
+    connections: {}
+    module: EvseSlac
+### END
+# ISO / SLAC config for port 2
+###
+
+### BEGIN
+# EVSE Manager AC config for port 2
+# PLEASE COMMENT OUT FOLLOWING BLOCK IF UNUSED OR DC CONFIG USED FOR PORT 2
+###
+#  evse_manager_port2:
+#    config_module:
+#      ac_enforce_hlc: true
+#      ac_hlc_enabled: true
+#      ac_hlc_use_5percent: true
+#      ac_nominal_voltage: 230
+#      charge_mode: AC
+#      evse_id: DE*PNX*E1234567*2
+#      payment_enable_contract: false
+#      payment_enable_eim: true
+#      session_logging: true
+#      session_logging_path: /tmp/logs
+#      connector_id: 2
+#    connections:
+#      bsp:
+#      - implementation_id: connector_2
+#        module_id: phyverso_mcu
+#      connector_lock:
+#      - implementation_id: connector_lock_2
+#        module_id: phyverso_mcu
+#      hlc:
+#      - implementation_id: charger
+#        module_id: iso_port2
+#      slac:
+#      - implementation_id: main
+#        module_id: slac_port2
+#      # uncomment and establish connection to your configured powermeter for port 2 here
+#      #powermeter_grid_side:
+#      #- implementation_id: main
+#      #  module_id: power_meter_port2
+#    module: EvseManager
+#    telemetry:
+#      id: 2
+### END
+# EVSE Manager AC config for port 2
+###
+
+### BEGIN
+# EVSE Manager DC config for port 2
+# PLEASE COMMENT OUT FOLLOWING BLOCK IF UNUSED OR AC CONFIG USED FOR PORT 2
+###
+  evse_manager_port2:
+    config_module:
+      charge_mode: DC
+      evse_id: DE*PNX*E1234567*2
+      payment_enable_contract: false
+      payment_enable_eim: true
+      session_logging: true
+      session_logging_path: /tmp/logs
+      connector_id: 2
+    connections:
+      bsp:
+      - implementation_id: connector_2
+        module_id: phyverso_mcu
+      hlc:
+      - implementation_id: charger
+        module_id: iso_port2
+      slac:
+      - implementation_id: main
+        module_id: slac_port2
+      # establish connections to your PSU/IMD/Meter here
+      powersupply_DC:
+        - module_id: powersupply_port2
+          implementation_id: main
+      imd:
+        - module_id: imd_port2
+          implementation_id: main
+      powermeter_car_side:
+        - module_id: powersupply_port2
+          implementation_id: powermeter
+    module: EvseManager
+    telemetry:
+      id: 2
+### END
+# EVSE Manager DC config for port 2
+###
+
+################### EXTERNAL DEVICES ###################
+
+### BEGIN
+# Simulated DC powersupply+IMD for port 1; simulated PSU also provides powermeter interface
+# gives you something to build upon
+###
+  powersupply_port1:
+    module: DCSupplySimulator
+  imd_port1:
+    module: IMDSimulator
+### END
+# Simulated DC powersupply for port 1; also provides powermeter interface
+###
+
+### BEGIN
+# Simulated DC powersupply+IMD for port 2; simulated PSU also provides powermeter interface
+# gives you something to build upon
+###
+  powersupply_port2:
+    module: DCSupplySimulator
+  imd_port2:
+    module: IMDSimulator
+### END
+# Simulated DC powersupply for port 2; also provides powermeter interface
+###
+
+### BEGIN
+# Example for a RS485 based power meter
+# this will be commented out, for the sake of this template
+# powermeter/IMD/supplys will be simulated
+# -> simulated DC supply will provide an inbuilt powermeter
+###
+#  power_meter_port1:
+#    module: GenericPowermeter
+#    connections:
+#      serial_comm_hub:
+#      - module_id: serial_comm_hub
+#        implementation_id: main
+#    config_implementation:
+#      main:
+#        model: "Eastron_SDM230"
+#        powermeter_device_id: 1
+### END
+# Example for a RS485 based power meter
+###

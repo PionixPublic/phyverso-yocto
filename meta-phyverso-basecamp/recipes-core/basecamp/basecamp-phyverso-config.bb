@@ -25,5 +25,3 @@ do_install() {
     install -m 0644 ${WORKDIR}/config-phyverso-ac-kit.yaml ${D}${sysconfdir}/everest/
     install -m 0644 ${WORKDIR}/config-phyverso-template.yaml ${D}${sysconfdir}/everest/
 }
-
-do_install[nostamp] = "1"

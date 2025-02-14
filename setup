@@ -27,7 +27,7 @@ layers = [
     {"rev":"06c240c3c235fa06fe724e278d53463ac67cc26b",      "branch":"kirkstone",               "repo":"meta-security",             "path":"meta-security",             "remote":"yocto"},
     {"rev":"5f386fa561d23b777f467064a1d973cbf66c68ac",      "branch":"kirkstone",               "repo":"meta-phyverso-evcs",        "path":"meta-phyverso-evcs",        "remote":"phytec-github"},
     {"rev":"dfc364b932a783ddb294e6a6cc562ce38b4bfaff",      "branch":"kirkstone",               "repo":"meta-lumissil-greenphy",    "path":"meta-lumissil-greenphy",    "remote":"phytec-github"},
-    {"rev":"1.0-rc2",                                       "branch":"kirkstone-release/1.0",   "repo":"meta-basecamp",             "path":"meta-basecamp",             "remote":"github-pionix"},
+    {"rev":"1.0",                                           "branch":"kirkstone-release/1.0",   "repo":"meta-basecamp",             "path":"meta-basecamp",             "remote":"github-pionix"},
 ]
 
 #

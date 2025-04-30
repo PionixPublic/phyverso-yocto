@@ -25,7 +25,7 @@ layers = [
     {"rev":"d7b7b6fb6c7c5545e718e44f38853d1718ce5446",      "branch":"kirkstone",               "repo":"meta-arm",                  "path":"meta-arm",                  "remote":"yocto"},
     {"rev":"refs/tags/09.02.00.009",                        "branch":"kirkstone",               "repo":"meta-ti",                   "path":"meta-ti",                   "remote":"yocto"},
     {"rev":"06c240c3c235fa06fe724e278d53463ac67cc26b",      "branch":"kirkstone",               "repo":"meta-security",             "path":"meta-security",             "remote":"yocto"},
-    {"rev":"b8b0a59a349a0e73710386a9d8190baa39ad0ce4",      "branch":"kirkstone",               "repo":"meta-phyverso-evcs",        "path":"meta-phyverso-evcs",        "remote":"phytec-github"},
+    {"rev":"014a65e30116d143036636fe4189959de528823d",      "branch":"kirkstone",               "repo":"meta-phyverso-evcs",        "path":"meta-phyverso-evcs",        "remote":"phytec-github"},
     {"rev":"dfc364b932a783ddb294e6a6cc562ce38b4bfaff",      "branch":"kirkstone",               "repo":"meta-lumissil-greenphy",    "path":"meta-lumissil-greenphy",    "remote":"phytec-github"},
     {"rev":"1.0.1",                                         "branch":"kirkstone-release/1.0",   "repo":"meta-basecamp",             "path":"meta-basecamp",             "remote":"github-pionix"},
 ]

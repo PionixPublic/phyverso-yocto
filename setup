@@ -28,6 +28,8 @@ layers = [
     {"rev":"014a65e30116d143036636fe4189959de528823d",      "branch":"kirkstone",               "repo":"meta-phyverso-evcs",        "path":"meta-phyverso-evcs",        "remote":"phytec-github"},
     {"rev":"dfc364b932a783ddb294e6a6cc562ce38b4bfaff",      "branch":"kirkstone",               "repo":"meta-lumissil-greenphy",    "path":"meta-lumissil-greenphy",    "remote":"phytec-github"},
     {"rev":"1.0.1",                                         "branch":"kirkstone-release/1.0",   "repo":"meta-basecamp",             "path":"meta-basecamp",             "remote":"github-pionix"},
+    {"rev":"2626dfec92ffd3dbf810d571b9f7ede13bf56591",      "branch":"kirkstone",               "repo":"meta-flutter/meta-flutter", "path":"meta-flutter",              "remote":"github"},
+
 ]
 
 #

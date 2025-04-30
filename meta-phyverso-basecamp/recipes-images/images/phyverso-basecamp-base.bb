@@ -33,6 +33,8 @@ IMAGE_INSTALL += "\
     phyverso-mcu-bringup-service \
     phyverso-firmware \
     basecamp-phyverso-config \
+    flutter-pi \
+    flutter-engine \
 "
 
 SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"

@@ -11,6 +11,7 @@ SRC_URI:append = " \
            file://config-phyverso-ac-dc.yaml \
            file://config-phyverso-ac-kit.yaml \
            file://config-phyverso-template.yaml \
+           file://config-phyverso-dc-kit.yaml \
            "
 
 FILES:${PN} += " \
@@ -24,4 +25,5 @@ do_install() {
     install -m 0644 ${WORKDIR}/config-phyverso-ac-dc.yaml ${D}${sysconfdir}/everest/
     install -m 0644 ${WORKDIR}/config-phyverso-ac-kit.yaml ${D}${sysconfdir}/everest/
     install -m 0644 ${WORKDIR}/config-phyverso-template.yaml ${D}${sysconfdir}/everest/
+    install -m 0644 ${WORKDIR}/config-phyverso-dc-kit.yaml ${D}${sysconfdir}/everest/
 }

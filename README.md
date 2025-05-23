@@ -1,5 +1,10 @@
 # How to use PhyVerso and build an Yocto image with basecamp
 
+## Step 0: Preparations when using git.pionix.com
+If you are using git.pionix.com to access this repository, you will have to add your SSH keys at https://git.pionix.com/user/settings/keys.
+
+Please only use the SSH URL to access the repositories on git.pionix.com because using HTTPS can break things down the line.
+
 ## Step 1: Clone this repository
 Create a folder (e.g. pionix) where everything will be placed.
 
@@ -7,6 +12,23 @@ Create a folder (e.g. pionix) where everything will be placed.
 mkdir pionix
 cd pionix
 git clone git@github.com:PionixPro/phyverso-yocto.git
+```
+
+If you are using the git.pionix.com mirror, you will have to clone this url:
+
+```
+git clone ssh://forgejo@git.pionix.com/Pionix/phyverso-yocto.git
+```
+
+### Step 1.1: Modifications needed when using git.pionix.com
+
+When using the git.pionix.com mirror you will have to uncomment the appropriate line in `setup` which corresponds to the `pionix-git` remote.
+
+You will also have to uncomment/set the following parameters in `build/conf/local.conf`:
+
+```
+GIT_REPOSITORY_URL = "ssh://forgejo@git.pionix.com/Pionix"
+PREFIX_GIT_REPOSITORY = ""
 ```
 
 ## Step 2: Run the setup tool

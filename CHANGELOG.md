@@ -8,7 +8,7 @@
 - http://pionix-update.de/phyverso/1.0.0/phyverso-basecamp-image-am62-phyverso-evcs-20241126150139.rootfs.partup
 - http://pionix-update.de/phyverso/1.0.0/phyverso-basecamp-image-am62-phyverso-evcs-20241126150139.rootfs.wic.bmap
 - http://pionix-update.de/phyverso/1.0.0/phyverso-basecamp-image-am62-phyverso-evcs-20241126150139.rootfs.wic.xz
-- SDK (for PHYTEC only!): http://pionix-update.de/phyverso/1.0.0/phytec-ampliphy-rauc-glibc-x86_64-phyverso-basecamp-image-aarch64-toolchain-BSP-Yocto-Ampliphy-AM62x-PD23.2.1-phyVERSO-EVCS.sh
+- SDK: http://pionix-update.de/phyverso/1.0.0/phytec-ampliphy-rauc-glibc-x86_64-phyverso-basecamp-image-aarch64-toolchain-BSP-Yocto-Ampliphy-AM62x-PD23.2.1-phyVERSO-EVCS.sh
 
 ### Added
 

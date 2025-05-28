@@ -1,0 +1,182 @@
+settings:
+  telemetry_enabled: true
+active_modules:
+  persistent_store:
+    module: PersistentStore
+    config_module:
+      sqlite_db_file_path: /etc/everest/everest_persistent_store.db
+    connections: {}
+
+  evse_manager_port1:                                                                                    
+    config_module:                                                                                       
+      charge_mode: DC                                                                                    
+      evse_id: DE*PNX*E1234567*1                                                                         
+      payment_enable_contract: false                                                                     
+      payment_enable_eim: true                                                                           
+      session_logging: true                                                                              
+      session_logging_path: /tmp/logs                                                                    
+      connector_id: 1                                                                                    
+    connections:                                                                                         
+      bsp:                                                                                               
+      - implementation_id: connector_1                                                                   
+        module_id: phyverso_mcu                                                                          
+      hlc:                                                                                               
+      - implementation_id: charger                                                                       
+        module_id: iso_port1                                                                             
+      slac:                                                                                              
+      - implementation_id: main                                                                          
+        module_id: slac_port1                                                                            
+      powersupply_DC:                                                                                    
+        - module_id: powersupply_port1                                                                   
+          implementation_id: main                                                                        
+      imd:                                                                                               
+        - module_id: imd_port1                                                                           
+          implementation_id: main                                                                        
+      powermeter_car_side:                                                                               
+        - module_id: powermeter
+          implementation_id: main                                                                  
+    module: EvseManager                                                                                  
+    telemetry:                                                                                           
+      id: 1
+
+  setup:
+    config_module:
+      localization: true
+      setup_simulation: false
+      setup_wifi: true
+    connections:
+      store:
+      - module_id: persistent_store
+        implementation_id: main
+    module: Setup
+
+  api:
+    connections:
+      evse_manager:
+      - implementation_id: evse
+        module_id: evse_manager_port1
+    module: API
+
+  auth:
+    module: Auth
+    config_module:
+      connection_timeout: 10
+      selection_algorithm: PlugEvents
+    connections:
+      token_provider:
+      - module_id: token_provider_port1
+        implementation_id: main
+      token_validator:
+      - module_id: token_validator
+        implementation_id: main
+      evse_manager:
+      - module_id: evse_manager_port1
+        implementation_id: evse
+
+  energy_manager:
+    connections:
+      energy_trunk:
+      - implementation_id: energy_grid
+        module_id: grid_connection_point
+    module: EnergyManager
+
+  grid_connection_point:
+    config_module:
+      fuse_limit_A: 32
+      phase_count: 3
+    connections:
+      energy_consumer:
+      - implementation_id: energy_grid
+        module_id: evse_manager_port1
+    module: EnergyNode
+
+  evse_security:
+    module: EvseSecurity
+
+  token_validator:
+    config_implementation:
+      main:
+        sleep: 0.25
+        validation_reason: Token seems valid
+        validation_result: Accepted
+    connections: {}
+    module: DummyTokenValidator
+
+  phyverso_mcu:
+    module: PhyVersoBSP
+    config_module:
+      serial_port: /dev/ttyS6
+      conn1_max_current_A_import: 32
+      conn1_max_phase_count_import: 3
+      conn1_dc: true
+      conn1_motor_lock_type: 1
+      conn1_gpio_stop_button_enabled: true
+      conn1_gpio_stop_button_bank: gpiochip1
+      conn1_gpio_stop_button_pin: 36
+
+  serial_comm_hub:
+    module: SerialCommHub
+    config_implementation:
+      main:
+        serial_port: /dev/ttyS4
+        baudrate: 19200
+        rxtx_gpio_line: 44
+        rxtx_gpio_chip: gpiochip2
+        rxtx_gpio_tx_high: true
+        parity: 2
+  token_provider_port1:
+    config_implementation:
+      main:
+        timeout: 10
+        token: DEADBEEF
+        type: RFID
+    connections:
+      evse:
+      - implementation_id: evse
+        module_id: evse_manager_port1
+    module: DummyTokenProvider
+  iso_port1:
+    config_module:
+      device: seth0
+    connections:
+      security:
+      - implementation_id: main
+        module_id: evse_security
+    module: EvseV2G
+  slac_port1:
+    config_implementation:
+      main:
+        device: seth0
+        number_of_sounds: 10
+        link_status_detection: true
+    connections: {}
+    module: EvseSlac
+  powersupply_port1:
+    module: Huawei_R100040Gx
+    config_module:
+      can_device: main_mcan0
+      max_export_current_A: 30
+      max_export_power_W: 20000
+
+  imd_port1:
+    config_implementation:
+      main:
+        # hier auch eventuell aendern
+        imd_device_id: 3
+    connections:
+      serial_comm_hub:
+        - implementation_id: main
+          module_id: serial_comm_hub
+    module: Bender_isoCHA425HV
+    config_module:
+      selftest_enable_gridconnection: true
+  powermeter:
+    module: IsabellenhuetteIemDcr
+  system:
+    module: Linux_Systemd_Rauc
+    config_module:
+      RebootCommand: "reboot '0 tryboot'"
+    connections:
+      store:
+      - module_id: persistent_store
+        implementation_id: main

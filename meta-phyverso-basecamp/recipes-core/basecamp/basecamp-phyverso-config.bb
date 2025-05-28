@@ -31,6 +31,6 @@ do_install() {
     install -m 0644 ${WORKDIR}/config-phyverso-evcs-cube.yaml ${D}${sysconfdir}/everest/
     mkdir -p ${D}${sysconfdir}/everest/provisioning/
     install -m 0644 ${WORKDIR}/isabellenhuette-network.conf ${D}${sysconfdir}/everest/provisioning/
-    install -m 0644 ${WORKDIR}/provision-ac-kit.sh ${D}${sysconfdir}/everest/provisioning/
-    install -m 0644 ${WORKDIR}/provision-dc-kit.sh ${D}${sysconfdir}/everest/provisioning/
+    install -m 0744 ${WORKDIR}/provision-ac-kit.sh ${D}${sysconfdir}/everest/provisioning/
+    install -m 0744 ${WORKDIR}/provision-dc-kit.sh ${D}${sysconfdir}/everest/provisioning/
 }

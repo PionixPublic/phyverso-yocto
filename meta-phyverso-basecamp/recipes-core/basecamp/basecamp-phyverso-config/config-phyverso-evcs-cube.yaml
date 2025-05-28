@@ -172,11 +172,11 @@ active_modules:
       selftest_enable_gridconnection: true
   powermeter:
     module: IsabellenhuetteIemDcr
-  system:
-    module: Linux_Systemd_Rauc
-    config_module:
-      RebootCommand: "reboot '0 tryboot'"
-    connections:
-      store:
-      - module_id: persistent_store
-        implementation_id: main
+#  system:
+#    module: Linux_Systemd_Rauc
+#    config_module:
+#      RebootCommand: "reboot '0 tryboot'"
+#    connections:
+#      store:
+#      - module_id: persistent_store
+#        implementation_id: main

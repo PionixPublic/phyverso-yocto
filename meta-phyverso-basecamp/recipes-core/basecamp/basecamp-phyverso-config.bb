@@ -12,6 +12,7 @@ SRC_URI:append = " \
            file://config-phyverso-ac-kit.yaml \
            file://config-phyverso-template.yaml \
            file://config-phyverso-dc-kit.yaml \
+           file://isabellenhuette-network.conf \
            "
 
 FILES:${PN} += " \
@@ -26,4 +27,6 @@ do_install() {
     install -m 0644 ${WORKDIR}/config-phyverso-ac-kit.yaml ${D}${sysconfdir}/everest/
     install -m 0644 ${WORKDIR}/config-phyverso-template.yaml ${D}${sysconfdir}/everest/
     install -m 0644 ${WORKDIR}/config-phyverso-dc-kit.yaml ${D}${sysconfdir}/everest/
+    mkdir -p ${D}${sysconfdir}/everest/provisioning/
+    install -m 0644 ${WORKDIR}/isabellenhuette-network.conf ${D}${sysconfdir}/everest/provisioning/
 }

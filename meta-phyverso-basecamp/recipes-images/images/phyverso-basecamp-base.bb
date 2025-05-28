@@ -35,6 +35,7 @@ IMAGE_INSTALL += "\
     basecamp-phyverso-config \
     flutter-pi \
     flutter-engine \
+    nano \
 "
 
 SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"
@@ -43,3 +44,8 @@ SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"
 IMAGE_INSTALL:append_am62 = " firmwared"
 
 WKS_FILE:forcevariable = "phyverso-basecamp-rauc-sdimage.wks"
+
+inherit extrausers
+EXTRA_USERS_PARAMS = "\
+    usermod -p '\$6\$2xlzJau/ov7IpIIC\$yzrgVyi3TayXTaR1q1z7zxDh8lj8aSsmrjy.WDvEzOv//dKmCyvx5h1W3bJAkzPeQRn7km8YMqcLw1RfYP6801' root; \
+    "

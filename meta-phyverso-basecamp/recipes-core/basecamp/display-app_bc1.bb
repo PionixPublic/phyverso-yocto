@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Apache-2.0;md5=89aea4e17d99a7ca
 
 # Default SRCREV and SRC_URI
 SRCREV = "7ac2b87641fa761ee920b86326d033e64d41baab"
-SRC_URI = "git://git@github.com/PionixPro/display-app.git;branch=development;protocol=ssh \
+SRC_URI = "${GIT_REPOSITORY_URL}/${PREFIX_GIT_REPOSITORY}display-app.git;branch=development;protocol=ssh \
            file://display-app.service.in \
           "
 

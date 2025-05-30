@@ -27,8 +27,14 @@ When using the git.pionix.com mirror you will have to uncomment the appropriate 
 You will also have to uncomment/set the following parameters in `build/conf/local.conf`:
 
 ```
-GIT_REPOSITORY_URL = "ssh://forgejo@git.pionix.com/Pionix"
+GIT_REPOSITORY_URL = "git://forgejo@git.pionix.com/Pionix"
 PREFIX_GIT_REPOSITORY = ""
+```
+
+For now, the PionixCloud repository is not mirrored, so please comment out the following line in `build/conf/local.conf` aswell, so that its recipe is not included in the build:
+
+```
+PACKAGECONFIG:pn-basecamp:append = " pionix-cloud"
 ```
 
 ## Step 2: Run the setup tool

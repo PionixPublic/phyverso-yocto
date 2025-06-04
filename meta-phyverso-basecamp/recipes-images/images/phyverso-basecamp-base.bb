@@ -37,6 +37,7 @@ IMAGE_INSTALL += "\
     flutter-engine \
     nano \
     display-app \
+    ti-cc33xx-firmware \
 "
 
 SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"

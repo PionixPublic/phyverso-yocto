@@ -1,6 +1,41 @@
 
 # Change Log
 
+## [1.0.1] - 2025-06-23
+
+### Release files
+- http://pionix-update.de/phyverso/1.0.1/20250623081614/phyverso-basecamp-bundle-am62-phyverso-evcs-20250623081614.raucb
+- http://pionix-update.de/phyverso/1.0.1/20250623081614/phyverso-basecamp-image-am62-phyverso-evcs-20250623081614.rootfs.partup
+- http://pionix-update.de/phyverso/1.0.1/20250623081614/phyverso-basecamp-image-am62-phyverso-evcs-20250623081614.rootfs.wic.bmap
+- http://pionix-update.de/phyverso/1.0.1/20250623081614/phyverso-basecamp-image-am62-phyverso-evcs-20250623081614.rootfs.wic.xz
+- SDK: can be build using portal, process documented in README
+
+### Added
+
+- adds generic template config which shows AC / DC configs for both ports and how to integrate RS485 devices
+- adds configs for Phytec AC and DC evaluation kits
+- adds provisioning scripts in production/comission for Phytec AC and DC evaluation kits
+- adds wifi module support for cc33xx
+- adds display support for dd0700mc01_lvds/dpi
+- adds support for Isabellenhuette IEM-DCR
+- adds flutter support and example display-app
+- adds nano
+- adds preconfigured network file for Isabellenhuette IEM-DCR to configure phyVerso eth0 to be in default network segment as IEM-DCR
+
+### Changed
+
+- BaseCamp version bumped to 1.0.1 + hotfixes (image naming is coincidence, basecamp image version does not follow BaseCamp version employed on a given image)
+- root user default password changed from empty to "basecamp"
+
+### Fixed
+- fixes cc33xx missing firmware bug
+- fixes can bitrate for Huawei power supply in Phytec DC evaluation kit
+- fixes PMIC bug that lead to cc33xx not restarting properly on warm reboot
+- all 5V tolerant inputs/outputs now properly muxed
+- integrates lumissil firmware fix made by Pionix+Lumissil
+
+---
+
 ## [1.0.0] - 2024-11-26
 
 ### Release files
@@ -28,10 +63,8 @@
 ## [alpha-5.0] - 2024-11-18
  
 ### Release files
-- http://pionix-update.de/phyverso/alpha-5.0/phyverso-basecamp-bundle-am62-phyverso-evcs-20241118094011.raucb
-- http://pionix-update.de/phyverso/alpha-5.0/phyverso-basecamp-image-am62-phyverso-evcs-20241118094011.rootfs.partup
-- http://pionix-update.de/phyverso/alpha-5.0/phyverso-basecamp-image-am62-phyverso-evcs-20241118094011.rootfs.wic.bmap
-- http://pionix-update.de/phyverso/alpha-5.0/phyverso-basecamp-image-am62-phyverso-evcs-20241118094011.rootfs.wic.xz
+
+Release files for alpha versions have been removed. Get in contact with Pionix if you still explicitly need an alpha image. Otherwise please consider migrating to 1.0.0 and upwards!
  
 ### Added
 
@@ -49,10 +82,7 @@
 ## [alpha-4.0] - 2024-10-21
  
 ### Release files
-- http://pionix-update.de/phyverso/alpha-4/phyverso-basecamp-bundle-am62-phyverso-evcs-20241021050740.raucb
-- http://pionix-update.de/phyverso/alpha-4/phyverso-basecamp-image-am62-phyverso-evcs-20241021050740.rootfs.partup
-- http://pionix-update.de/phyverso/alpha-4/phyverso-basecamp-image-am62-phyverso-evcs-20241021050740.rootfs.wic.bmap
-- http://pionix-update.de/phyverso/alpha-4/phyverso-basecamp-image-am62-phyverso-evcs-20241021050740.rootfs.wic.xz
+Release files for alpha versions have been removed. Get in contact with Pionix if you still explicitly need an alpha image. Otherwise please consider migrating to 1.0.0 and upwards!
  
 ### Added
 
@@ -72,10 +102,7 @@
 
 ### Release files
 
-- https://pionix-update.de/phyverso/alpha-3.1/phyverso-basecamp-bundle-am62-phyverso-evcs-1-20241016182129.raucb
-- https://pionix-update.de/phyverso/alpha-3.1/phyverso-basecamp-image-am62-phyverso-evcs-1-20241016182129.rootfs.partup
-- https://pionix-update.de/phyverso/alpha-3.1/phyverso-basecamp-image-am62-phyverso-evcs-1-20241016182129.rootfs.wic.bmap
-- https://pionix-update.de/phyverso/alpha-3.1/phyverso-basecamp-image-am62-phyverso-evcs-1-20241016182129.rootfs.wic.xz
+Release files for alpha versions have been removed. Get in contact with Pionix if you still explicitly need an alpha image. Otherwise please consider migrating to 1.0.0 and upwards!
 
 ### Added
  
@@ -94,10 +121,7 @@
 ## [alpha-3] - 2024-10-11
 
 ### Release files
-- https://pionix-update.de/phyverso/alpha-3/phyverso-basecamp-bundle-am62-phyverso-evcs-1-20241011094736.raucb
-- https://pionix-update.de/phyverso/alpha-3/phyverso-basecamp-image-am62-phyverso-evcs-1-20241011094736.rootfs.partup
-- https://pionix-update.de/phyverso/alpha-3/phyverso-basecamp-image-am62-phyverso-evcs-1-20241011094736.rootfs.wic.bmap
-- https://pionix-update.de/phyverso/alpha-3/phyverso-basecamp-image-am62-phyverso-evcs-1-20241011094736.rootfs.wic.xz
+Release files for alpha versions have been removed. Get in contact with Pionix if you still explicitly need an alpha image. Otherwise please consider migrating to 1.0.0 and upwards!
  
 ### Added
 

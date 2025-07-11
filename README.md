@@ -1,11 +1,13 @@
-# How to use phyVerso and build a Yocto image with BaseCamp
+# phyVERSO BaseCamp Yocto Image
 
-## Step 0: Preparations when using git.pionix.com
+## How to build a Yocto image with BaseCamp for phyVERSO
+
+### Step 0: Preparations when using git.pionix.com
 If you are using git.pionix.com to access this repository, you will have to add your SSH keys at https://git.pionix.com/user/settings/keys.
 
 Please only use the SSH URL to access the repositories on git.pionix.com because using HTTPS can break things down the line.
 
-## Step 1: Clone this repository
+### Step 1: Clone this repository
 Create a folder (e.g. pionix) where everything will be placed.
 
 ```
@@ -33,7 +35,7 @@ PREFIX_GIT_REPOSITORY = ""
 
 For now, the PionixCloud repository is not mirrored and only used for internal builds, not available on the portal to build yourself. Get in touch with us for more information or help on building with PionixCloud using the PionixPro repository.
 
-## Step 2: Run the setup tool
+### Step 2: Run the setup tool
 We are using a tool part of this repository (you find it in the root folder) to sync and initialize the meta layers and prepare everything for the build.
 The tool supports 2 operations `init` and `sync`.
 
@@ -59,11 +61,11 @@ $ ./setup --init
 The tool will run and sync the repositories. 
 Eventually, if you make any changes to the layers or somebody made changes and you want to sync those changes locally you run it with the option `--sync`. This allows you to sync locally the changes made in the upstream. If you made changes as well to the layers you want to sync, you might want to specify how to sync (`fetch` or `pull`) so that you can have the possibility to rebase or merge the changes. By default the method is `fetch` if no argument is provided.
 
-## Step 3: Build the image and SDK
+### Step 3: Build the image and SDK
 The PhyVerso repo comes with a build directory (containing only the config folder).
 In the config folder there is a default configuration file `local.conf` and the layers configuration `bblayers.conf`.
 
-### Configure the build
+#### Configure the build
 There are a lot of configuration parameters available, however, the most interesting ones are:
 
 ```
@@ -74,7 +76,7 @@ BASECAMP_JS_PY_ENABLE = "1"
 ```
 You can change them to your needs before building.
 
-### Build the image
+#### Build the image
 To start building the image you need to source the yocto environment:
 
 ```
@@ -113,13 +115,13 @@ $ bitbake phyverso-basecamp-bundle
 
 Depending on your computer you might need to go for a coffee a walk or both.
 
-### Building the SDK
+#### Building the SDK
 After sourcing the yocto environment you can also build an SDK by executing
 ```
 $ bitbake phyverso-basecamp-image -c populate_sdk
 ```
 
-## Step 4: Flash the image or the bundle on your target
+### Step 4: Flash the image or the bundle on your target
 If the pre-installed image on the SOM provides RAUC support you can install the bundle from within linux by executing:
 
 ```console
@@ -194,7 +196,11 @@ mkfs.ext4 /dev/mmcblk0p8
 exit
 ```
 
-## Step 5: Flashing the MSPM0
+### Step 5: Flashing the MSPM0 (optional)
+
+If you are using an image release that is newer than alpha-3 (for example 1.0.0 and up), the image will already have the firmware file located at `/usr/lib/firmware/phyverso-firmware.bin`. This file will automatically get flashed, if needed, while the linux is booting, via the `phyverso-mcu-bringup.service`. You can check if it has succeeded using `systemctl status phyverso-mcu-bringup.service`.
+
+You can still always try and flash a different firmware file manually, but if you don't replace the file under `/usr/lib/firmware/phyverso-firmware.bin` it will get overwritten the next time you reboot.
 
 Before trying to flash the MSPM0 via UART from within the linux system, make sure that no other process (e.g. basecamp or phyverso_cli) is currently using the serial `/dev/ttyS6`. 
 
@@ -247,3 +253,18 @@ index 66420faf..c76b53c4 100644
 ```
 
 This problem is known to Phytec and has been fixed with scarthgap releases, which we will migrate soon with our upcoming 2.x.x releases and following.
+## How to integrate different overlays (display/wifi)
+
+Some added hardware functionality and devices might require you to set a u-boot environment variable for u-boot and linux to find and add the respective device tree overlays. You can see which overlays are activated by executing `fw_printenv overlays` inside the shell. The overlays variable can be set with `
+
+`setenv overlays "<list of whitespace separated dtbo files>"`
+
+So for example, to activate the cc33xx wifi module and an lvds attached display, the command to execute would look like this:
+
+```console
+setenv overlays "cc33xx.dtbo dd0700mc01_lvds.dtbo"
+```
+
+In the current 1.0.1 release we do not yet support u-boot uEnv.txt files to specify the selected overlays to be used. We plan on adding this feature with the next major release that will also probably be in conjunction with moving up to Scarthgap. 
+
+When trying to add custom overlays, mind that in the current 1.0.1 release, the boot partitions that u-boot sees are not accessible under `/boot` in when inside a shell but are actually either `/dev/mmcblk0p1` or `/dev/mmcblk0p2`, which will have to be mounted manually to move overlays there for u-boot to be found, or get in touch with Pionix to have us look at integrating your overlays directly into an image. Which `/dev/mmcblk0pX` partition you need to mount will depend on which rauc slot you are on. You can see the active one by executing `rauc status` and mount the boot.X partition accordingly.

@@ -11,31 +11,27 @@ Create a folder (e.g. pionix) where everything will be placed.
 ```
 mkdir pionix
 cd pionix
-git clone git@github.com:PionixPro/phyverso-yocto.git
-```
-
-If you are using the git.pionix.com mirror, you will have to clone this url:
-
-```
 git clone ssh://forgejo@git.pionix.com/Pionix/phyverso-yocto.git
 ```
 
-### Step 1.1: Modifications needed when using git.pionix.com
-
-When using the git.pionix.com mirror you will have to uncomment the appropriate line in `setup` which corresponds to the `pionix-git` remote.
-
-You will also have to uncomment/set the following parameters in `build/conf/local.conf`:
+If you are using the PionixPro repository, you will have to clone this url:
 
 ```
-GIT_REPOSITORY_URL = "git://forgejo@git.pionix.com/Pionix"
+git clone git@github.com:PionixPro/phyverso-yocto.git
+```
+
+
+
+### Step 1.1: Modifications needed when using PionixPro
+
+When using the PionixPro GitHub repository you will have to uncomment/set the following parameters in `build/conf/local.conf`:
+
+```
+GIT_REPOSITORY_URL = "git://git@github.com/PionixPro"
 PREFIX_GIT_REPOSITORY = ""
 ```
 
-For now, the PionixCloud repository is not mirrored, so please comment out the following line in `build/conf/local.conf` aswell, so that its recipe is not included in the build:
-
-```
-PACKAGECONFIG:pn-basecamp:append = " pionix-cloud"
-```
+For now, the PionixCloud repository is not mirrored and only used for internal builds, not available on the portal to build yourself. Get in touch with us for more information or help on building with PionixCloud using the PionixPro repository.
 
 ## Step 2: Run the setup tool
 We are using a tool part of this repository (you find it in the root folder) to sync and initialize the meta layers and prepare everything for the build.
@@ -224,3 +220,24 @@ Status:
 The `MSPM0_bsl_flasher` tool automatically starts the application after successful flashing. You can also check if flashing was successful by running `phyverso_cli /dev/ttyS6 /etc/everest/example_config_qwello.json` and check if you receive state updates.
 
 In case of errors try repeating the flashing process and make sure serial is not used by other processes. Also make sure that no other device is actively or passively in control of the nRST or BSL pins. It is a known problem that a XDS110 debugging probe that is attached to the uC target but not plugged into USB is preventing a successful connection to the BSL device or any other startup.
+
+## Building WIC images on kirkstone based releases
+
+At the moment it is not possible to build wic images without manual changes because in Phytecs most recent AM62x kirkstone BSP layers they remove `wic.xz wic.bmap` in a way that those `IMAGE_FSTYPES` can not be added anywhere else in another layer, local.conf or recipe. You will have to manually go to the `sources/meta-phytec/conf/machine/include/phyk3.inc b/conf/machine/include/phyk3.inc` file and uncomment the lines shown in the following diff:
+
+```console
+diff --git a/conf/machine/include/phyk3.inc b/conf/machine/include/phyk3.inc
+index 66420faf..c76b53c4 100644
+--- a/conf/machine/include/phyk3.inc
++++ b/conf/machine/include/phyk3.inc
+@@ -56,6 +56,6 @@ IMAGE_CLASSES += "image-types-partup"
+ include partup-layout-config.inc
+ IMAGE_FSTYPES += "partup"
+
+-IMAGE_FSTYPES:remove:update = "wic.xz wic.bmap"
++#IMAGE_FSTYPES:remove:update = "wic.xz wic.bmap"
+ # rootfs alignment required for RAUC adaptive update
+ IMAGE_ROOTFS_ALIGNMENT:update = "4"
+```
+
+This problem is known to Phytec and has been fixed with scarthgap releases, which we will migrate soon with our upcoming 2.x.x releases and following.

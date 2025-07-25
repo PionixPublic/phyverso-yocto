@@ -1,6 +1,16 @@
 
 # Change Log
 
+## [1.0.2] - Unreleased, experimental stage
+
+### Release files
+
+- will be added when ready for release
+
+### Added
+
+- adds new InfyPower basecamp driver for InfyPower modules using V1.13 CAN protocol
+
 ## [1.0.1] - 2025-06-23
 
 ### Release files

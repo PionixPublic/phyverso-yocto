@@ -38,6 +38,7 @@ IMAGE_INSTALL += "\
     nano \
     display-app \
     ti-cc33xx-firmware \
+    packagegroup-virtualization \
 "
 
 SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"

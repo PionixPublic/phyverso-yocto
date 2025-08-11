@@ -1,0 +1,16 @@
+[Unit]
+Description=Pionix Basecamp
+Requires=mosquitto.service
+After=mosquitto.service
+Requires=cg5317-host.service
+After=cg5317-host.service
+ConditionFileNotEmpty=/etc/everest/basecamp.yaml
+
+[Service]
+Type=simple
+Restart=always
+Nice=-20
+ExecStart=/usr/bin/manager --conf /etc/everest/basecamp.yaml
+
+[Install]
+WantedBy=multi-user.target

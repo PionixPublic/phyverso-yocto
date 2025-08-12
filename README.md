@@ -346,13 +346,13 @@ You can see which overlays are activated by executing `fw_printenv overlays`
 inside the shell.
 The overlays variable can be set with
 
-`setenv overlays "<list of whitespace separated dtbo files>"`
+`fw_setenv overlays "<list of whitespace separated dtbo files>"`
 
 So for example, to activate the cc33xx WiFi module and an lvds attached
 display, the command to execute would look like this:
 
 ```console
-setenv overlays "cc33xx.dtbo dd0700mc01_lvds.dtbo"
+fw_setenv overlays "cc33xx.dtbo dd0700mc01_lvds.dtbo"
 ```
 
 In the current 1.0.1 release we do not yet support u-boot uEnv.txt files to

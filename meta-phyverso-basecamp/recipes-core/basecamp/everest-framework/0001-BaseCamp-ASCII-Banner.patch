@@ -1,20 +1,21 @@
-From e65a8f307342e41235b33a319ac615536f3689d3 Mon Sep 17 00:00:00 2001
+From de91c21fc892ed5e6c719cb1addd678f6e78ec64 Mon Sep 17 00:00:00 2001
 From: Jonas Rockstroh <jonas.rockstroh@pionix.de>
 Date: Wed, 20 Nov 2024 15:39:51 +0100
 Subject: [PATCH] replaced EVerest ascii banner with colorless BaseCamp banner
 
 Signed-off-by: Jonas Rockstroh <jonas.rockstroh@pionix.de>
+
 ---
  src/manager.cpp | 33 ++++++++-------------------------
  1 file changed, 8 insertions(+), 25 deletions(-)
 
 diff --git a/src/manager.cpp b/src/manager.cpp
-index 6f90489..c91c14b 100644
+index 10cba08..055fe7a 100644
 --- a/src/manager.cpp
 +++ b/src/manager.cpp
-@@ -465,31 +465,14 @@ int boot(const po::variables_map& vm) {
+@@ -585,31 +585,14 @@ int boot(const po::variables_map& vm) {
  
-     Logging::init(rs->logging_config_file.string());
+     Logging::init(ms.runtime_settings->logging_config_file.string());
  
 -    EVLOG_info << "  \033[0;1;35;95m_\033[0;1;31;91m__\033[0;1;33;93m__\033[0;1;32;92m__\033[0;1;36;96m_\033[0m      "
 -                  "\033[0;1;31;91m_\033[0;1;33;93m_\033[0m                \033[0;1;36;96m_\033[0m   ";
@@ -51,4 +52,4 @@ index 6f90489..c91c14b 100644
 +    EVLOG_info << "                                           |_|    ";
      EVLOG_info << "";
      EVLOG_info << PROJECT_NAME << " " << PROJECT_VERSION << " " << GIT_VERSION;
-     EVLOG_info << rs->version_information;
+     EVLOG_info << ms.version_information;

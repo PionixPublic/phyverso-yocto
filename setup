@@ -4,6 +4,7 @@
 # Add, remove, modify the layers to sync, here. The tool doesn't change the bblayers.conf so be sure to update that too
 #
 
+pionix_forgejo_short_form = "forgejo@git.pionix.com:Pionix"
 pionix_forgejo = "ssh://forgejo@git.pionix.com/Pionix"
 pionix_forgejo_yocto = "git://forgejo@git.pionix.com/Pionix"
 
@@ -148,7 +149,7 @@ def main():
 
     # Replace if match
     git_remote = get_git_remote()
-    if git_remote and git_remote.startswith(pionix_forgejo):
+    if git_remote and (git_remote.startswith(pionix_forgejo) or git_remote.startswith(pionix_forgejo_short_form)):
         for r in remotes:
             if r["name"] == "github-pionix":
                 r["url"] = pionix_forgejo

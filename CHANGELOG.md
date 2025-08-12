@@ -10,6 +10,15 @@
 ### Added
 
 - adds new InfyPower basecamp driver for InfyPower modules using V1.13 CAN protocol
+- adds Podman
+
+### Changed
+
+- remove unused ac-kit image recipe
+
+### Fixed
+
+- fixes bug with basecamp being started before lumissil is ready which leads to NMK key setting always failing on first HLC session 
 
 ## [1.0.1] - 2025-06-23
 

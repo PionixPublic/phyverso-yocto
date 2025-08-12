@@ -1,0 +1,3 @@
+EXTRA_OECMAKE += "\
+    -DUSING_TPM2=ON \
+"

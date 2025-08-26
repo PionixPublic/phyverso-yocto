@@ -20,7 +20,7 @@ python() {
 
 OS_RELEASE_FIELDS:append = " BUILD_ID BUILD_TAG LAYER_REV"
 
-VERSION = "BaseCamp phyVERSO-EVCS ${BUILD_TAG} ${@'(%s)' % DISTRO_CODENAME if 'DISTRO_CODENAME' in d else ''}"
+VERSION = "EVerest phyVERSO-EVCS ${BUILD_TAG} ${@'(%s)' % DISTRO_CODENAME if 'DISTRO_CODENAME' in d else ''}"
 PRETTY_NAME = "${VERSION}"
 
 # Ensure the git commands run every time bitbake is invoked.

@@ -28,10 +28,11 @@ layers = [
     {"rev":"06c240c3c235fa06fe724e278d53463ac67cc26b",      "branch":"kirkstone",               "repo":"meta-security",             "path":"meta-security",             "remote":"yocto"},
     {"rev":"418803e28fcea34ebc30c28400fc3f2d9061dbcf",      "branch":"kirkstone",               "repo":"meta-phyverso-evcs",        "path":"meta-phyverso-evcs",        "remote":"phytec-github"},
     {"rev":"fef01f0358760c86f16aeaf53de8c5e96e6ac367",      "branch":"kirkstone",               "repo":"meta-lumissil-greenphy",    "path":"meta-lumissil-greenphy",    "remote":"phytec-github"},
-    {"rev":"aaa3e536881528b865e894af1844de30f618a2c9",      "branch":"kirkstone-release/1.0",   "repo":"meta-basecamp",             "path":"meta-basecamp",             "remote":"github-pionix"},
     {"rev":"2626dfec92ffd3dbf810d571b9f7ede13bf56591",      "branch":"kirkstone",               "repo":"meta-flutter/meta-flutter", "path":"meta-flutter",              "remote":"github"},
     {"rev":"312ff1c39b1bf5d35c0321e873417eb013cea477",      "branch":"kirkstone",               "repo":"kraj/meta-clang",           "path":"meta-clang",                "remote":"github"},
-    {"rev": "a055d7dcafc58855081a5eac9a46b93b9b51012b",     "branch":"kirkstone",               "repo":"meta-virtualization",       "path":"meta-virtualization",       "remote":"yocto"},
+    {"rev":"a055d7dcafc58855081a5eac9a46b93b9b51012b",      "branch":"kirkstone",               "repo":"meta-virtualization",       "path":"meta-virtualization",       "remote":"yocto"},
+    {"rev":"10b4712dabd16bbb36940b82c4ed2ca4b38f470f",      "branch":"release/kirkstone/2025.7.0",               "repo":"EVerest/meta-everest",              "path":"meta-everest",              "remote":"github"},
+
 ]
 
 #

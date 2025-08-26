@@ -1,6 +1,6 @@
 require recipes-images/images/phytec-headless-image.bb
 
-SUMMARY =  "This image is designed to contain a complete Basecamp install for phyVERSO"
+SUMMARY =  "This image is designed to contain a complete EVerest install for phyVERSO"
 
 IMAGE_FEATURES += "\
     splash \
@@ -11,9 +11,7 @@ LICENSE = "MIT"
 
 IMAGE_INSTALL += "\
     packagegroup-machine-base \
-    basecamp \
-    basecamp-config \
-    basecamp-service \
+    everest \
     mosquitto \
     tzdata \
     lms-eth2spi \
@@ -32,7 +30,7 @@ IMAGE_INSTALL += "\
     tmux \
     phyverso-mcu-bringup-service \
     phyverso-firmware \
-    basecamp-phyverso-config \
+    everest-phyverso-config \
     flutter-pi \
     flutter-engine \
     nano \
@@ -41,12 +39,19 @@ IMAGE_INSTALL += "\
     packagegroup-virtualization \
 "
 
+#TODO/add here:
+#   - basecamp-service fix
+#   - basecamp-config fix
+IMAGE_INSTALL += "\
+    everest-service \
+"
+
 SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"
 #IMAGE_ROOTFS_EXTRA_SPACE:append = " + 500000"
 
 IMAGE_INSTALL:append_am62 = " firmwared"
 
-WKS_FILE:forcevariable = "phyverso-basecamp-rauc-sdimage.wks"
+WKS_FILE:forcevariable = "phyverso-everest-rauc-sdimage.wks"
 
 inherit extrausers
 EXTRA_USERS_PARAMS = "\

@@ -1,6 +1,6 @@
 require recipes-images/images/phytec-headless-image.bb
 
-SUMMARY =  "This image is designed to contain a complete everest install for phyverso"
+SUMMARY =  "This image is designed to contain minimal packages to build a toolchain for phyVERSO"
 
 IMAGE_FEATURES += "\
     splash \
@@ -11,7 +11,7 @@ LICENSE = "MIT"
 
 IMAGE_INSTALL += "\
     packagegroup-base \
-    basecamp \
+    everest \
     mosquitto \
     tzdata \
     nodejs \

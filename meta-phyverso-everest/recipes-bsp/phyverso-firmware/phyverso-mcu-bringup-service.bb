@@ -19,4 +19,4 @@ do_install:append() {
     install -m 0644 ${WORKDIR}/phyverso-mcu-bringup.service ${D}${systemd_system_unitdir}
 }
 
-RDEPENDS = "mspm0_bsl_flasher"
+RDEPENDS:${PN} = "mspm0-bsl-flasher"

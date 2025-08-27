@@ -1,6 +1,6 @@
 [Unit]
 Description=Update MCU firmware on boot if needed and reset MCU
-Before=basecamp.service
+Before=everest.service
 
 [Service]
 Type=oneshot

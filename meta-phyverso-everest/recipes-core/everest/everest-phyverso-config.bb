@@ -1,7 +1,7 @@
-DESCRIPTION = "phyVERSO specific Basecamp configurations"
+DESCRIPTION = "phyVERSO specific EVerest configurations"
 LICENSE = "CLOSED"
 
-RDEPENDS:${PN}="basecamp"
+RDEPENDS:${PN}="everest-core"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 

@@ -11,7 +11,7 @@ LICENSE = "MIT"
 
 IMAGE_INSTALL += "\
     packagegroup-machine-base \
-    everest \
+    everest-core \
     mosquitto \
     tzdata \
     lms-eth2spi \
@@ -42,6 +42,7 @@ IMAGE_INSTALL += "\
 #TODO/add here:
 #   - basecamp-service fix
 #   - basecamp-config fix
+# everest-service not yet working
 IMAGE_INSTALL += "\
     everest-service \
 "

@@ -31,7 +31,7 @@ index 0000000000..ac2fbaac0d
 @@ -0,0 +1,29 @@
 +/* SPDX-License-Identifier: GPL-2.0+ */
 +
-+wic_image=phyverso-basecamp-image-am62-ksp0728-1.wic
++wic_image=phyverso-everest-image-am62-ksp0728-1.wic
 +
 +flash_emmc=
 +	test -n ${BOOT_ORDER} || setenv BOOT_ORDER system0 system1;

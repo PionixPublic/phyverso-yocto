@@ -1,6 +1,16 @@
 
 # Change Log
 
+## [1.1.0] - WIP, waiting on basecamp being merged into everest-core
+
+### Release files
+
+- will be added when ready for release
+
+### Changed
+
+- preparations for meta-everest replacing meta-basecamp layer
+
 ## [1.0.2] - Unreleased, experimental stage
 
 ### Release files

@@ -1,6 +1,6 @@
-# phyVERSO BaseCamp Yocto Image
+# phyVERSO EVerest Yocto Image
 
-## How to build a Yocto image with BaseCamp for phyVERSO
+## How to build a Yocto image with EVerest for phyVERSO
 
 ### Step 0: Preparations when using git.pionix.com
 
@@ -10,8 +10,8 @@ If you are using git.pionix.com to access this repository, you will have to add 
 > Please only use the SSH URL to access the repositories on git.pionix.com
 > because using HTTPS can break things down the line.
 
-During building, the build process will need your SSH key password for
-accessing BaseCamp sources and library repositories.
+During building, the build process may need your SSH key password for
+accessing sources and library repositories.
 To also make the non-interactive phases of the build process use your password,
 you will have to set your SSH key password in the current SSH session:
 
@@ -120,6 +120,10 @@ BASECAMP_JS_PY_ENABLE = "1"
 
 You can change the parameters to your needs before building.
 
+> [!NOTE]
+> This set of parameters will be subject to changes, current README is WIP.
+
+
 #### Build the image
 To start building the image you need to source the yocto environment:
 
@@ -150,13 +154,13 @@ You are ready to build an image or a bundle that you can flash with the RAUC too
 If you just want the image run:
 
 ```
-$ bitbake phyverso-basecamp-image
+$ bitbake phyverso-everest-image
 ```
 
 If you want the RAUC bundle, run:
 
 ```
-$ bitbake phyverso-basecamp-bundle
+$ bitbake phyverso-everest-bundle
 ```
 
 Depending on your computer, you might need to go for a coffee a walk or both.
@@ -165,7 +169,7 @@ Depending on your computer, you might need to go for a coffee a walk or both.
 After sourcing the yocto environment you can also build an SDK by executing
 
 ```
-$ bitbake phyverso-basecamp-image -c populate_sdk
+$ bitbake phyverso-everest-image -c populate_sdk
 ```
 
 ### Step 4: Flash the image or the bundle on your target
@@ -181,7 +185,7 @@ Use one partition only on the USB drive and format it with ext4.
 Uncompress the image if neccessary, e.g.:
 
 ```console
-unxz phyverso-basecamp-image-am62-phyverso-evcs-1.wic.xz
+unxz phyverso-everest-image-am62-phyverso-evcs-1.wic.xz
 ```
 
 Then copy the image file (.wic) onto the USB drive and insert it into the one USB port on the phyVERSO.
@@ -191,7 +195,7 @@ Now flash in the u-boot shell:
 
 ```console
 usb start
-setenv wic_image phyverso-basecamp-image-am62-phyverso-evcs-1.wic
+setenv wic_image phyverso-everest-image-am62-phyverso-evcs-1.wic
 run flash_emmc
 ```
 
@@ -264,11 +268,11 @@ you don't replace the file `/usr/lib/firmware/phyverso-firmware.bin`, it will
 get overwritten the next time you reboot.
 
 Before trying to flash the MSPM0 via UART from within the Linux system, make
-sure that no other process (e.g. basecamp or phyverso_cli) is currently using
+sure that no other process (e.g. everest or phyverso_cli) is currently using
 the serial `/dev/ttyS6`. 
 
 ```console
-systemctl stop basecamp && killall phyverso_cli
+systemctl stop everest && killall phyverso_cli
 ```
 
 If you have not already copied the phyverso-firmware.bin you can do so e.g. via SCP from your host system (.bin file is inside Debug/ or Release/ respectively):

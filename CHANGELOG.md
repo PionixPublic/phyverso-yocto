@@ -12,6 +12,10 @@
 - preparations for meta-everest replacing meta-basecamp layer
 - root user default password changed to "everest"
 
+### Fixed
+
+- fixes bug with everest being started before lumissil is ready which leads to NMK key setting always failing on first HLC session
+
 ## [1.0.2] - Unreleased, experimental stage
 
 ### Release files
@@ -26,10 +30,6 @@
 ### Changed
 
 - remove unused ac-kit image recipe
-
-### Fixed
-
-- fixes bug with basecamp being started before lumissil is ready which leads to NMK key setting always failing on first HLC session 
 
 ## [1.0.1] - 2025-06-23
 

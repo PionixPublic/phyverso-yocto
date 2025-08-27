@@ -10,6 +10,7 @@
 ### Changed
 
 - preparations for meta-everest replacing meta-basecamp layer
+- root user default password changed to "everest"
 
 ## [1.0.2] - Unreleased, experimental stage
 

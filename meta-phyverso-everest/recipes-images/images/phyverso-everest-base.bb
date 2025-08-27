@@ -56,5 +56,5 @@ WKS_FILE:forcevariable = "phyverso-everest-rauc-sdimage.wks"
 
 inherit extrausers
 EXTRA_USERS_PARAMS = "\
-    usermod -p '\$6\$2xlzJau/ov7IpIIC\$yzrgVyi3TayXTaR1q1z7zxDh8lj8aSsmrjy.WDvEzOv//dKmCyvx5h1W3bJAkzPeQRn7km8YMqcLw1RfYP6801' root; \
+    usermod -p '\$1\$3t3Pos3u\$rJcKiN./w.sbD41oMqQM71' root; \
     "

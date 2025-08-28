@@ -58,3 +58,5 @@ inherit extrausers
 EXTRA_USERS_PARAMS = "\
     usermod -p '\$1\$3t3Pos3u\$rJcKiN./w.sbD41oMqQM71' root; \
     "
+
+EXTRA_IMAGECMD:ext4:append = " -O ^orphan_file"

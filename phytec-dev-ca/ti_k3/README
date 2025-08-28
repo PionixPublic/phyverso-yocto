@@ -1,8 +1,0 @@
-TI keywriter documentation
-https://software-dl.ti.com/tisci/esd/latest/6_topic_user_guides/key_writer.html#key-writer
-
-key generation
-./gen_keywr_cert.sh -g
-
-certificate creation
-./gen_keywr_cert.sh -s keys/phytecSMPK.pem --smek keys/phytecSMEK.key -b keys/phytecBMPK.pem --bmek keys/phytecBMEK.key -t ti_fek_public.pem -a keys/phytecAES256.key

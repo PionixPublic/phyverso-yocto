@@ -4,6 +4,7 @@ build/*
 !build/conf/local.conf
 !build/conf/bblayers.conf
 build/conf/templateconf.cfg
+phytec-dev-ca/*
 
 # Prerequisites
 *.d

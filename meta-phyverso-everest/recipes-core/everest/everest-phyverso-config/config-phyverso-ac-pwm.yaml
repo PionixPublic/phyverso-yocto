@@ -110,7 +110,7 @@ active_modules:
       conn1_max_current_A_import: 16
       conn1_max_phase_count_import: 1
       conn1_dc: false
-      reset_gpio_bank: 2
+      reset_gpio_bank: 3
       conn1_motor_lock_type: 1
       conn2_motor_lock_type: 1
       serial_port: /dev/ttyS6

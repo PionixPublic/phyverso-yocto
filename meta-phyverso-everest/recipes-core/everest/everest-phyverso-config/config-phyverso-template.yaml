@@ -87,13 +87,14 @@ active_modules:
     config_module:
       ### General
       serial_port: /dev/ttyS6
+      reset_gpio_bank: 3
       ### Port 1 config
       conn1_max_current_A_import: 16
       conn1_max_phase_count_import: 1
       conn1_dc: true # set to "true" if evse_manager_port1 is for DC config; false for AC
       conn1_motor_lock_type: 1
       conn1_gpio_stop_button_enabled: false
-      conn1_gpio_stop_button_bank: gpiochip1
+      conn1_gpio_stop_button_bank: gpiochip2
       conn1_gpio_stop_button_pin: 36
       ### Port 2 config
       conn2_max_current_A_import: 16
@@ -101,7 +102,7 @@ active_modules:
       conn2_dc: true # set to "true" if evse_manager_port1 is for DC config; false for AC
       conn2_motor_lock_type: 1
       conn2_gpio_stop_button_enabled: false
-      conn2_gpio_stop_button_bank: gpiochip1
+      conn2_gpio_stop_button_bank: gpiochip2
       conn2_gpio_stop_button_pin: 37
 
 ### BEGIN
@@ -115,7 +116,7 @@ active_modules:
         serial_port: /dev/ttyS4
         baudrate: 9600 # you will have to adjust this to suit the configuration of the devices on the bus
         rxtx_gpio_line: 44
-        rxtx_gpio_chip: gpiochip2
+        rxtx_gpio_chip: gpiochip3
         rxtx_gpio_tx_high: true
 ### END
 # RS485 Config

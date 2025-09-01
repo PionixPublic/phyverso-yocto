@@ -111,8 +111,9 @@ active_modules:
       conn1_dc: true
       conn1_motor_lock_type: 1
       conn1_gpio_stop_button_enabled: true
-      conn1_gpio_stop_button_bank: gpiochip1
+      conn1_gpio_stop_button_bank: gpiochip2
       conn1_gpio_stop_button_pin: 36
+      reset_gpio_bank: 3
 
   serial_comm_hub:
     module: SerialCommHub
@@ -121,7 +122,7 @@ active_modules:
         serial_port: /dev/ttyS4
         baudrate: 19200
         rxtx_gpio_line: 44
-        rxtx_gpio_chip: gpiochip2
+        rxtx_gpio_chip: gpiochip3
         rxtx_gpio_tx_high: true
         parity: 2
   token_provider_port1:

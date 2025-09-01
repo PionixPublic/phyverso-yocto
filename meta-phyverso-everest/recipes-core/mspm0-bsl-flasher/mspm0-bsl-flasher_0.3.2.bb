@@ -18,9 +18,9 @@ S = "${WORKDIR}/git"
 
 inherit cmake
 
-# for now GPIO that were on bank1 move to bank2 when MCU gpios are also used on linux image
-EXTRA_OECMAKE += "-DGPIO_BSL_BANK=2"
-EXTRA_OECMAKE += "-DGPIO_RESET_BANK=2"
+# scarthgap moved to gpiochip3
+EXTRA_OECMAKE += "-DGPIO_BSL_BANK=3"
+EXTRA_OECMAKE += "-DGPIO_RESET_BANK=3"
 
 do_install() {
     install -d ${D}${bindir}

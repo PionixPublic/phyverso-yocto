@@ -8,3 +8,9 @@ do_install:append() {
         rm ${D}${systemd_system_unitdir}/everest.service
     fi
 }
+
+# only used temporarily until PhyVersoBSP for FW 2.0 is merged into main and meta-everest branch updated
+SRC_URI = "git://github.com/EVerest/everest-core.git;branch=feat/phyverso-extend-config-options-and-error-flags;protocol=https  \
+           file://everest.service \
+           "
+SRCREV = "6ab54b482e2e01992a1ea566e06f29da15204f65"

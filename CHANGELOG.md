@@ -1,11 +1,30 @@
 
 # Change Log
 
+## [1.0.3] - Unreleased, experimental stage
+
+### Release files
+
+- will be added when ready for release / for now only given to specific customers directly
+
+### Added
+
+- TPM support activated
+
+### Changed
+
+- tpm2-openssl updated to v1.2
+- adds dc_external_derate interface/feature
+
+### Fixed
+
+- fixes bug with basecamp being started before lumissil is ready which leads to NMK key setting always failing on first HLC session
+
 ## [1.0.2] - Unreleased, experimental stage
 
 ### Release files
 
-- will be added when ready for release
+- will be added when ready for release to public / for now only given to specific customers directly
 
 ### Added
 
@@ -18,7 +37,8 @@
 
 ### Fixed
 
-- fixes bug with basecamp being started before lumissil is ready which leads to NMK key setting always failing on first HLC session 
+- ~~fixes bug with basecamp being started before lumissil is ready which leads to NMK key setting always failing on first HLC session~~
+**was actually not fixed here yet**
 
 ## [1.0.1] - 2025-06-23
 

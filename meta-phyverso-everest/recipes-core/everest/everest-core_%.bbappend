@@ -10,7 +10,33 @@ do_install:append() {
 }
 
 # only used temporarily until PhyVersoBSP for FW 2.0 is merged into main and meta-everest branch updated
-SRC_URI = "git://github.com/EVerest/everest-core.git;branch=feat/phyverso-extend-config-options-and-error-flags;protocol=https  \
+SRC_URI = "git://github.com/EVerest/everest-core.git;branch=tst/winline;protocol=https  \
            file://everest.service \
            "
-SRCREV = "6ab54b482e2e01992a1ea566e06f29da15204f65"
+SRCREV = "4f041385de9d6ed5dde930af06c534d3050dd921"
+
+DEPENDS = " \
+    everest-cmake \
+    boost \
+    sigslot \
+    pugixml \
+    libpcap \
+    evcli-native \
+    rsync-native \
+    nodejs-native \
+    everest-framework \
+    libocpp \
+    libfsm \
+    liblog \
+    libtimer \
+    libslac \
+    libevent \
+    libevse-security \
+    libcbv2g \
+    libiso15118 \
+    libnfc-nci \
+    curl \
+    everest-sqlite \
+    sdbus-c++ \
+"
+

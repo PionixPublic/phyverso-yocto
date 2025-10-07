@@ -109,7 +109,6 @@ active_modules:
       conn1_max_current_A_import: 32
       conn1_max_phase_count_import: 3
       conn1_dc: true
-      conn1_motor_lock_type: 1
       conn1_gpio_stop_button_enabled: true
       conn1_gpio_stop_button_bank: gpiochip2
       conn1_gpio_stop_button_pin: 36

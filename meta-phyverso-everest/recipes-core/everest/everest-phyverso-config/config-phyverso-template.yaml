@@ -92,7 +92,7 @@ active_modules:
       conn1_max_current_A_import: 16
       conn1_max_phase_count_import: 1
       conn1_dc: true # set to "true" if evse_manager_port1 is for DC config; false for AC
-      conn1_motor_lock_type: 1
+      #conn1_motor_lock_type: 1 # default value: -1, meaning no motor lock -> DC never has motor lock on EVSE side
       conn1_gpio_stop_button_enabled: false
       conn1_gpio_stop_button_bank: gpiochip2
       conn1_gpio_stop_button_pin: 36
@@ -100,7 +100,7 @@ active_modules:
       conn2_max_current_A_import: 16
       conn2_max_phase_count_import: 1
       conn2_dc: true # set to "true" if evse_manager_port1 is for DC config; false for AC
-      conn2_motor_lock_type: 1
+      #conn2_motor_lock_type: 1 # default value: -1, meaning no motor lock -> DC never has motor lock on EVSE side
       conn2_gpio_stop_button_enabled: false
       conn2_gpio_stop_button_bank: gpiochip2
       conn2_gpio_stop_button_pin: 37

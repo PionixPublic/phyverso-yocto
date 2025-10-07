@@ -60,3 +60,5 @@ EXTRA_USERS_PARAMS = "\
     "
 
 EXTRA_IMAGECMD:ext4:append = " -O ^orphan_file"
+
+IMAGE_FSTYPES:append:update = " wic.xz wic.bmap"

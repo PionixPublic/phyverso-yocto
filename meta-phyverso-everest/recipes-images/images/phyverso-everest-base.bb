@@ -28,23 +28,14 @@ IMAGE_INSTALL += "\
     htop \
     overlayfs \
     tmux \
+    everest-service \
     phyverso-mcu-bringup-service \
     phyverso-firmware \
     everest-phyverso-config \
-    flutter-pi \
-    flutter-engine \
     nano \
-    display-app \
     ti-cc33xx-firmware \
-    packagegroup-virtualization \
-"
-
-#TODO/add here:
-#   - basecamp-service fix
-#   - basecamp-config fix
-# everest-service not yet working
-IMAGE_INSTALL += "\
-    everest-service \
+    ${@bb.utils.contains("PHYVERSO_USE_VIRTUALIZATION", "1", "packagegroup-virtualization", "", d)} \
+    ${@bb.utils.contains("PHYVERSO_USE_DISPLAY_APP", "1", "packagegroup-pionix-display-app", "", d)} \
 "
 
 SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"
@@ -61,4 +52,4 @@ EXTRA_USERS_PARAMS = "\
 
 EXTRA_IMAGECMD:ext4:append = " -O ^orphan_file"
 
-IMAGE_FSTYPES:append:update = " wic.xz wic.bmap"
+IMAGE_FSTYPES:append:update = "${@bb.utils.contains("PHYVERSO_BUILD_WIC", "1", " wic.xz wic.bmap", "", d)}"

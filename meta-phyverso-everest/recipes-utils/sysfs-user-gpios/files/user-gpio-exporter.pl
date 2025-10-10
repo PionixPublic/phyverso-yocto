@@ -4,11 +4,9 @@
 # export matched gpio lines to /sys/class/gpio/gpio-<line number> and
 # make symbolic link in current directory with
 # gpio labels to be able to access gpio lines by name
-my @user_gpio_labels = (
-    "5Vout1", "5Vout2", "5Vout3", "5Vout4", "5Vout5",
-    "EMERGENCY_CON1", "EMERGENCY_CON2",
-    "5Vin1", "5Vin4", "5Vin5",
-    "MSP_OE", "MSP_BSL", "MSP_RST");
+#
+# important: exported pins will be claimed by sysfs and wont be usable via EVerest or libgpiod tools
+my @user_gpio_labels = (LIST_OF_LABELS);
 
 my $gpio_info_path = "/sys/kernel/debug/gpio";
 open(my $in, "<", $gpio_info_path) or die "Can't open $gpio_info_path: $!";

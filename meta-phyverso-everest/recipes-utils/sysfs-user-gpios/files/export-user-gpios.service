@@ -1,5 +1,5 @@
 [Unit]
-Description=Export user GPIOs to /root/user_gpios symbolically by names
+Description=Export user GPIOs to be used by sysfs to /root/user_gpios symbolically by names
 
 [Service]
 Type=oneshot

@@ -9,6 +9,8 @@ SRC_URI = " \
 
 inherit systemd
 
+SYSFS_USER_GPIO_LABELS ??= ""
+
 SYSTEMD_AUTO_ENABLE:${PN} = "enable"
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_SERVICE:${PN} = "export-user-gpios.service"
@@ -17,6 +19,7 @@ do_install:append() {
     install -d ${D}/root/user_gpios
     install -m 0644 ${WORKDIR}/user-gpio-exporter.pl ${D}/root/user_gpios/
     chmod +x ${D}/root/user_gpios/user-gpio-exporter.pl
+    sed -i 's/LIST_OF_LABELS/${SYSFS_USER_GPIO_LABELS}/g' ${D}/root/user_gpios/user-gpio-exporter.pl
 
     install -d ${D}${systemd_system_unitdir}
     install -m 0644 ${WORKDIR}/export-user-gpios.service ${D}${systemd_system_unitdir}

@@ -36,7 +36,7 @@ IMAGE_INSTALL += "\
     ti-cc33xx-firmware \
     ${@bb.utils.contains("PHYVERSO_USE_VIRTUALIZATION", "1", "packagegroup-virtualization", "", d)} \
     ${@bb.utils.contains("PHYVERSO_USE_DISPLAY_APP", "1", "packagegroup-pionix-display-app", "", d)} \
-    user-gpio-utils \
+    ${@bb.utils.contains("PHYVERSO_SYSFS_USER_GPIOS", "1", "sysfs-user-gpios", "", d)} \
 "
 
 SDKIMAGE_FEATURES:remove = "dbg-pkgs src-pkgs"

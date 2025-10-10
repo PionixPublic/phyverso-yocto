@@ -1,0 +1,9 @@
+[Unit]
+Description=Export user GPIOs to /root/user_gpios symbolically by names
+
+[Service]
+Type=oneshot
+ExecStart=/root/user_gpios/user-gpio-exporter.pl
+
+[Install]
+WantedBy=multi-user.target

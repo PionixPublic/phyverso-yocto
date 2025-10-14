@@ -382,4 +382,9 @@ EMERGENCY_CON1, EMERGENCY_CON2,
 
 By default the bitrates for the `main_mcan0` and `mcu_mcan0` interfaces will be set in `/lib/systemd/network/main_mcan0.network` and `/lib/systemd/network/mcu_mcan0.network` files respectively.
 
-To adjust them to your needs, you can either choose to programmatically change them in production/commisioning of your final boards or you can add a `systemd_%.bbappend` where you overwrite those files with your own network files, so that when building your image, the correct changes are already applied and don't have to be done in the commissioning stage.
+You can manually change those files on the target system after building/installing a bundle with the default values or you can set the following variables in `local.conf` to your needs:
+
+```
+PHYVERSO_MAIN_MCAN0_BITRATE = "250000"
+PHYVERSO_MCU_MCAN0_BITRATE = "250000"
+```

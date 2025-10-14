@@ -1,0 +1,6 @@
+[Match]
+Name=mcu_mcan0
+
+[CAN]
+BitRate=MCU_MCAN0_BITRATE
+

@@ -345,3 +345,35 @@ Which `/dev/mmcblk0pX` partition you need to mount will depend on which RAUC
 slot you are on.
 You can see the active one by executing `rauc status` and mount the boot.X
 partition accordingly.
+
+## Export and use user GPIOs by name (gpio sysfs)
+
+We added the possibility to automatically export labeled user GPIOs into userspace via the gpio sysfs subsystem by setting
+
+```
+PHYVERSO_SYSFS_USER_GPIOS = "1"
+```
+
+in your `local.conf`. This will then add a script which exports the comma separated GPIOs inside this variable:
+
+```
+SYSFS_USER_GPIO_LABELS = '"5Vin1", "5Vout1"'
+```
+
+Those GPIOs will then be available in userspace under `/root/user_gpios/` where you can set/get direction and values in a file-based way, e.g. `cat`/`echo` from/to `/root/user_gpios/<LABEL OF THE GPIO>/direction` or `/root/user_gpios/<LABEL OF THE GPIO>/value`.
+
+> [!IMPORTANT]
+> Please keep in mind that you must not export pins here that are used otherwise in
+> EVerest or any other program because sysfs will take ownership of those pins when
+> exporting them, so they can't be accessed from e.g. EVerest anymore.
+
+Available labels are:
+
+```
+5Vout1, 5Vout2, 5Vout3, 5Vout4, 5Vout5,
+5Vin1, 5Vin4, 5Vin5,
+EMERGENCY_CON1, EMERGENCY_CON2,
+```
+
+> [!NOTE]
+> EMERGENCY_CON1 and EMERGENCY_CON2 are only available if you do not use them in EVerest as stop buttons (like in Phytec DC EVCS Cube)

@@ -301,7 +301,7 @@ Status:
 The `MSPM0_bsl_flasher` tool automatically starts the application after
 successful flashing.
 You can also check if flashing was successful by running
-`phyverso_cli /dev/ttyS6 /etc/everest/example_config_qwello.json` and check if
+`phyverso_cli /dev/ttyS6 /etc/everest/cli_config_hella_lock.json` and check if
 you receive state updates.
 
 In case of errors, try repeating the flashing process and make sure serial is
@@ -330,12 +330,11 @@ display, the command to execute would look like this:
 fw_setenv overlays "cc33xx.dtbo dd0700mc01_lvds.dtbo"
 ```
 
-In the current 1.0.1 release we do not yet support u-boot uEnv.txt files to
+Currently we do not yet support u-boot uEnv.txt files to
 specify the selected overlays to be used.
-We plan on adding this feature with the next major release that will also
-probably be in conjunction with moving up to Scarthgap.
+We plan on adding this feature in upcoming releases.
 
-When trying to add custom overlays, mind that in the current 1.0.1 release,
+When trying to add custom overlays, mind that currently,
 the boot partitions that u-boot sees are not accessible from `/boot` when
 inside a shell but are actually either `/dev/mmcblk0p1` or `/dev/mmcblk0p2`,
 which will have to be mounted manually to move overlays there for u-boot to be

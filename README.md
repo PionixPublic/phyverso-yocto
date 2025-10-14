@@ -112,13 +112,17 @@ There are a lot of configuration parameters available.
 However, the most interesting ones are:
 
 ```
-# Build with Pionix EVERYTHING synchronized to HEAD revision
-BASECAMP_UNSTABLE = "1"
-# Enable JavaScript and Python 
-BASECAMP_JS_PY_ENABLE = "1"
+# variable to selectively enable/disable display-app, virtualization/podman, wic image building
+# default it's enabled. to disable, set to 0
+#PHYVERSO_USE_VIRTUALIZATION = "0"
+#PHYVERSO_USE_DISPLAY_APP = "0"
+#PHYVERSO_BUILD_WIC = "0"
+#PHYVERSO_SYSFS_USER_GPIOS = "1"
+#SYSFS_USER_GPIO_LABELS = '"5Vin1", "5Vout1"'
 ```
 
 You can change the parameters to your needs before building.
+Parameters in `local.conf` usually also have some kind of explanation in the form of comments next to them.
 
 > [!NOTE]
 > This set of parameters will be subject to changes, current README is WIP.
@@ -129,19 +133,14 @@ To start building the image you need to source the yocto environment:
 
 ```
 $ source ../source/poky/oe-init-build-env
+This is the default build configuration for a phyVERSO EVerest image.
 ### Shell environment set up for builds. ###
 
 You can now run 'bitbake <target>'
 
 Common targets are:
-    core-image-minimal
-    core-image-full-cmdline
-    core-image-sato
-    core-image-weston
-    meta-toolchain
-    meta-ide-support
-
-You can also run generated qemu images with a command like 'runqemu qemux86'.
+    phyverso-everest-image
+    phyverso-everest-bundle
 
 Other commonly useful commands are:
  - 'devtool' and 'recipetool' handle common recipe tasks
@@ -312,34 +311,6 @@ nRST or BSL pins.
 It is a known problem that a XDS110 debugging probe that is attached to the uC
 target but not plugged into USB is preventing a successful connection to the
 BSL device or any other startup.
-
-## Building WIC images on kirkstone-based releases
-
-At the moment it is not possible to build wic images without manual changes
-because in PHYTECs most recent AM62x kirkstone BSP layers, they remove
-`wic.xz wic.bmap` in a way that those `IMAGE_FSTYPES` cannot be added anywhere
-else in another layer, local.conf or recipe.
-You will have to manually go to the
-`sources/meta-phytec/conf/machine/include/phyk3.inc b/conf/machine/include/phyk3.inc`
-file and uncomment the lines shown in the following diff:
-
-```console
-diff --git a/conf/machine/include/phyk3.inc b/conf/machine/include/phyk3.inc
-index 66420faf..c76b53c4 100644
---- a/conf/machine/include/phyk3.inc
-+++ b/conf/machine/include/phyk3.inc
-@@ -56,6 +56,6 @@ IMAGE_CLASSES += "image-types-partup"
- include partup-layout-config.inc
- IMAGE_FSTYPES += "partup"
-
--IMAGE_FSTYPES:remove:update = "wic.xz wic.bmap"
-+#IMAGE_FSTYPES:remove:update = "wic.xz wic.bmap"
- # rootfs alignment required for RAUC adaptive update
- IMAGE_ROOTFS_ALIGNMENT:update = "4"
-```
-
-This problem is known to PHYTEC and has been fixed with scarthgap releases,
-which we will migrate soon with our upcoming 2.x.x releases and following.
 
 ## How to integrate different overlays (display/wifi)
 

@@ -1,6 +1,0 @@
-SRCREV = "71870efd97bd276a21a9513baa8cc3e79b5f4665"
-
-
-EXTRA_OECMAKE += "\
-    -DUSING_TPM2=ON \
-"

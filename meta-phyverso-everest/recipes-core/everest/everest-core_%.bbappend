@@ -1,3 +1,4 @@
+# meta-everest adds its own everest.service file, we will remove that here because we want to split everest.service and it's installation into a separate recipe
 SYSTEMD_SERVICE:${PN}:remove = "everest.service"
 
 FILES:${PN} += "${systemd_system_unitdir}/"
@@ -9,34 +10,7 @@ do_install:append() {
     fi
 }
 
-# only used temporarily until PhyVersoBSP for FW 2.0 is merged into main and meta-everest branch updated
-SRC_URI = "git://github.com/EVerest/everest-core.git;branch=tst/winline;protocol=https  \
-           file://everest.service \
-           "
-SRCREV = "4f041385de9d6ed5dde930af06c534d3050dd921"
-
-DEPENDS = " \
-    everest-cmake \
-    boost \
-    sigslot \
-    pugixml \
-    libpcap \
-    evcli-native \
-    rsync-native \
-    nodejs-native \
-    everest-framework \
-    libocpp \
-    libfsm \
-    liblog \
-    libtimer \
-    libslac \
-    libevent \
-    libevse-security \
-    libcbv2g \
-    libiso15118 \
-    libnfc-nci \
-    curl \
-    everest-sqlite \
-    sdbus-c++ \
-"
-
+# only temporarily set off-main branch, until winline driver is merged into everest-core/main and this everest-core version is also included in a meta-everest release
+SRC_URI = "git://github.com/EVerest/everest-core.git;branch=feature/winline_power_supply;protocol=https"
+# to be updated once PR is cleaned up
+SRCREV = "b2e17fac4ab9f1870c6a6ac0ef235dc227970420"

@@ -10,7 +10,6 @@ do_install:append() {
     fi
 }
 
-# only temporarily set off-main branch, until winline driver is merged into everest-core/main and this everest-core version is also included in a meta-everest release
-SRC_URI = "git://github.com/EVerest/everest-core.git;branch=feature/winline_power_supply;protocol=https"
-# to be updated once PR is cleaned up
-SRCREV = "b2e17fac4ab9f1870c6a6ac0ef235dc227970420"
+# only temporarily modify SRC_URI/SRCREV until meta-everest 2025.10.0 is released which will include Winline driver and PhyVersoBSP v2.0.0 FW support
+SRC_URI = "git://github.com/EVerest/everest-core.git;branch=main;protocol=https"
+SRCREV = "374030cb3e1709f436fec5fc3874a95533173f07"

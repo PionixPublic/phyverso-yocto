@@ -11,5 +11,11 @@ do_install:append() {
 }
 
 # only temporarily modify SRC_URI/SRCREV until meta-everest 2025.10.0 is released which will include Winline driver and PhyVersoBSP v2.0.0 FW support
-SRC_URI = "git://github.com/EVerest/everest-core.git;branch=main;protocol=https"
+SRC_URI = " \
+    git://github.com/EVerest/everest-core.git;branch=main;protocol=https \
+    file://everest.service \
+"
 SRCREV = "374030cb3e1709f436fec5fc3874a95533173f07"
+
+# needed for BU modules
+DEPENDS += "ftxui"

@@ -9,16 +9,22 @@
 
 ### Added
 
-- adds Winline driver
-- WIC file output enabled by default
+- adds Winline PSU driver
+- change CAN bitrates on main_mcan0/mcu_mcan0 via yocto variable `PHYVERSO_MAIN_MCAN0_BITRATE`/`PHYVERSO_MCU_MCAN0_BITRATE` - default `250000`
+- build/skip certain features depending on yocto variables
+    - `PHYVERSO_USE_VIRTUALIZATION` - default `1`/ON - podman support 
+    - `PHYVERSO_USE_DISPLAY_APP` - default `1`/ON - build display app, needs access to PionixPro/Pionix mirror and also not production grade UI, only PoC
+    - `PHYVERSO_BUILD_WIC` - default `1`/ON - build WIC image
+    - `PHYVERSO_SYSFS_USER_GPIOS` - default `0`/OFF - export named GPIOs in device tree that match names given in `SYSFS_USER_GPIO_LABELS` variable into `/root/user_gpios/<label>/` to be accessible via GPIO sysfs API. More info in local.conf
 
 ### Changed
 
+- *root user default password changed to "everest"*
 - switch from kirkstone to scarthgap
-- MCU FW updated to 2.0.0-rc2 and corresponding PhyVersoBSP EVerest module integrated (TODO: link finished PR once merged into everest-core/main)
+- MCU FW updated to 2.0.0-rc2 and corresponding PhyVersoBSP EVerest module integrated
 - switch from meta-basecamp to meta-everest
-- root user default password changed to "everest"
 - removed motor locks from DC port configs
+- flutter only get build if `PHYVERSO_USE_DISPLAY_APP` is turned ON
 
 ### Fixed
 

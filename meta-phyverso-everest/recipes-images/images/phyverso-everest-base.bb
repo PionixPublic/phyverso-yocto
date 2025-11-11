@@ -12,6 +12,7 @@ LICENSE = "MIT"
 IMAGE_INSTALL += "\
     packagegroup-machine-base \
     everest-core \
+    libocpp \
     mosquitto \
     tzdata \
     lms-eth2spi \

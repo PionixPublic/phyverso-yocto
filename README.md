@@ -1,4 +1,4 @@
-# phyVERSO EVerest Yocto Image
+# phyVERSO EVerest Yocto Image - *EXPERIMENTAL BRANCH*
 
 ## How to build a Yocto image with EVerest for phyVERSO
 
@@ -48,7 +48,8 @@ If you are using the PionixPro/phyverso-yocto repository on GitHub, you will hav
 git clone git@github.com:PionixPro/phyverso-yocto.git
 ```
 
-
+> [!IMPORTANT]
+> By default you will have cloned the default branch (latest stable image release). If you want to build a different branch, for example an experimental branch, please run `git checkout <BRANCHNAME>` in the directory you just cloned.
 
 ### Step 1.1: Modifications needed when using PionixPro
 

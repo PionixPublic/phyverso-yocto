@@ -12,26 +12,25 @@ remotes = [
     {"name": "yocto",        "url": "git://git.yoctoproject.org"},
     {"name": "openembedded", "url": "git://git.openembedded.org"},
     {"name": "github",       "url": "https://github.com"},
-    {"name": "phytec-github", "url": "ssh://git@github.com/phytec"},
     {"name": "github-pionix","url": "ssh://git@github.com/PionixPro"}
 ]
 
 layers = [
-    {"rev":"refs/tags/BSP-Yocto-Ampliphy-AM62x-PD24.1.2",   "branch":"scarthgap",               "repo":"meta-phytec",               "path":"meta-phytec",               "remote":"phytec-github"},
-    {"rev":"refs/tags/BSP-Yocto-Ampliphy-AM62x-PD24.1.2",   "branch":"scarthgap",               "repo":"meta-ampliphy",             "path":"meta-ampliphy",             "remote":"phytec-github"},
-    {"rev":"161d78efc1453ca5d78fcb6d10685fc819de516c",      "branch":"scarthgap",               "repo":"phytec/meta-summit-radio",  "path":"meta-summit-radio",         "remote":"github"},
-    {"rev":"7a06e2daa719ca0cac9905988f72bb0cb546c7b5",      "branch":"scarthgap",               "repo":"poky",                      "path":"poky",                      "remote":"yocto"},
-    {"rev":"6c9f1f8d4538119803bf793747b65e4d23c33544",      "branch":"scarthgap",               "repo":"meta-openembedded",         "path":"meta-openembedded",         "remote":"openembedded"},
-    {"rev":"76b97796be1d0303436835e56d85d7316a1029d9",      "branch":"scarthgap",               "repo":"rauc/meta-rauc",            "path":"meta-rauc",                 "remote":"github"},
-    {"rev":"3cadb81ffaa9f03b92e302843cb22a9cd41df34b",      "branch":"scarthgap",               "repo":"meta-arm",                  "path":"meta-arm",                  "remote":"yocto"},
-    {"rev":"refs/tags/11.00.05",                            "branch":"scarthgap",               "repo":"meta-ti",                   "path":"meta-ti",                   "remote":"yocto"},
-    {"rev":"bc865c5276c2ab4031229916e8d7c20148dfbac3",      "branch":"scarthgap",               "repo":"meta-security",             "path":"meta-security",             "remote":"yocto"},
-    {"rev":"85098bc7c67d44fb9459bb27f78d61e0b5c70208",      "branch":"scarthgap",               "repo":"phytec/meta-phyverso-evcs", "path":"meta-phyverso-evcs",        "remote":"github"},
-    {"rev":"370af97ea5e7c60733b93d2c5bda1d3891ea2e39",      "branch":"scarthgap",               "repo":"meta-lumissil-greenphy",    "path":"meta-lumissil-greenphy",    "remote":"phytec-github"},
-    {"rev":"aeb5b71bd25dcaa04221cfdda35a3dd4f309e214",      "branch":"scarthgap",               "repo":"meta-flutter/meta-flutter", "path":"meta-flutter",              "remote":"github"},
-    {"rev":"eea5ec23155cfd47781599fdc9a92c21e4caffc8",      "branch":"scarthgap",               "repo":"kraj/meta-clang",           "path":"meta-clang",                "remote":"github"},
-    {"rev":"79673f5c67b022e7aadeb231872470295e5b9188",      "branch":"scarthgap",               "repo":"meta-virtualization",       "path":"meta-virtualization",       "remote":"yocto"},
-    {"rev":"7d99f5229f9e0cba7e95f829b4d3b1eda059f78a",      "branch":"scarthgap",               "repo":"EVerest/meta-everest",      "path":"meta-everest",              "remote":"github"},
+    {"rev":"refs/tags/BSP-Yocto-Ampliphy-AM62x-PD24.1.2",   "branch":"scarthgap",               "repo":"phytec/meta-phytec",            "path":"meta-phytec",           "remote":"github"},
+    {"rev":"refs/tags/BSP-Yocto-Ampliphy-AM62x-PD24.1.2",   "branch":"scarthgap",               "repo":"phytec/meta-ampliphy",          "path":"meta-ampliphy",         "remote":"github"},
+    {"rev":"161d78efc1453ca5d78fcb6d10685fc819de516c",      "branch":"scarthgap",               "repo":"phytec/meta-summit-radio",      "path":"meta-summit-radio",     "remote":"github"},
+    {"rev":"7a06e2daa719ca0cac9905988f72bb0cb546c7b5",      "branch":"scarthgap",               "repo":"poky",                          "path":"poky",                  "remote":"yocto"},
+    {"rev":"6c9f1f8d4538119803bf793747b65e4d23c33544",      "branch":"scarthgap",               "repo":"meta-openembedded",             "path":"meta-openembedded",     "remote":"openembedded"},
+    {"rev":"76b97796be1d0303436835e56d85d7316a1029d9",      "branch":"scarthgap",               "repo":"rauc/meta-rauc",                "path":"meta-rauc",             "remote":"github"},
+    {"rev":"3cadb81ffaa9f03b92e302843cb22a9cd41df34b",      "branch":"scarthgap",               "repo":"meta-arm",                      "path":"meta-arm",              "remote":"yocto"},
+    {"rev":"refs/tags/11.00.05",                            "branch":"scarthgap",               "repo":"meta-ti",                       "path":"meta-ti",               "remote":"yocto"},
+    {"rev":"bc865c5276c2ab4031229916e8d7c20148dfbac3",      "branch":"scarthgap",               "repo":"meta-security",                 "path":"meta-security",         "remote":"yocto"},
+    {"rev":"85098bc7c67d44fb9459bb27f78d61e0b5c70208",      "branch":"scarthgap",               "repo":"phytec/meta-phyverso-evcs",     "path":"meta-phyverso-evcs",    "remote":"github"},
+    {"rev":"370af97ea5e7c60733b93d2c5bda1d3891ea2e39",      "branch":"scarthgap",               "repo":"phytec/meta-lumissil-greenphy", "path":"meta-lumissil-greenphy","remote":"github"},
+    {"rev":"aeb5b71bd25dcaa04221cfdda35a3dd4f309e214",      "branch":"scarthgap",               "repo":"meta-flutter/meta-flutter",     "path":"meta-flutter",          "remote":"github"},
+    {"rev":"eea5ec23155cfd47781599fdc9a92c21e4caffc8",      "branch":"scarthgap",               "repo":"kraj/meta-clang",               "path":"meta-clang",            "remote":"github"},
+    {"rev":"79673f5c67b022e7aadeb231872470295e5b9188",      "branch":"scarthgap",               "repo":"meta-virtualization",           "path":"meta-virtualization",   "remote":"yocto"},
+    {"rev":"7d99f5229f9e0cba7e95f829b4d3b1eda059f78a",      "branch":"scarthgap",               "repo":"EVerest/meta-everest",          "path":"meta-everest",          "remote":"github"},
 ]
 
 #

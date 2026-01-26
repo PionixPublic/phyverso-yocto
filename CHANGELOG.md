@@ -1,7 +1,21 @@
 
 # Change Log
 
-## [2.0.0] - Unreleased, experimental
+## [2.1.0] - Unreleased
+
+### Release files
+
+- will be added when/if publicly released
+
+### Added
+
+### Changed
+
+- EVerest bumped to 2025.12.1
+
+### Fixed
+
+## [2.0.0] - Unreleased
 
 ### Release files
 

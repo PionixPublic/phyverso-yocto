@@ -30,7 +30,7 @@ layers = [
     {"rev":"aeb5b71bd25dcaa04221cfdda35a3dd4f309e214",      "branch":"scarthgap",               "repo":"meta-flutter/meta-flutter",     "path":"meta-flutter",          "remote":"github"},
     {"rev":"5c602337ea1a80fb7217eeda04e396cf90587dca",      "branch":"scarthgap",               "repo":"kraj/meta-clang",               "path":"meta-clang",            "remote":"github"},
     {"rev":"f92518e20530edfebca45e4170e11460949a5303",      "branch":"scarthgap",               "repo":"meta-virtualization",           "path":"meta-virtualization",   "remote":"yocto"},
-    {"rev":"e0a7ab2e196b589eefb53b12e2f688769f46ab27",      "branch":"main",                    "repo":"EVerest/everest-core",          "path":"everest-core",          "remote":"github"},
+    {"rev":"e0a7ab2e196b589eefb53b12e2f688769f46ab27",      "branch":"release/2026.02.0-rc",    "repo":"EVerest/everest-core",          "path":"everest-core",          "remote":"github"},
 ]
 
 #

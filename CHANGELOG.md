@@ -9,11 +9,17 @@
 
 ### Added
 
+- 10" display support added on scarthgap (`k3-am62-oldi-ac209a.dtbo` overlay)
+
 ### Changed
 
 - EVerest bumped to 2025.12.1
+- poky bumped to 5.0.15
+- meta-arm bumped to 5.0.3
 
 ### Fixed
+
+- SPL bootloader fixed
 
 ## [2.0.0] - Unreleased
 

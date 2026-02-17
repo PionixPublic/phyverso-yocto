@@ -25,7 +25,7 @@ layers = [
     {"rev":"refs/tags/5.0.3",                               "branch":"scarthgap",               "repo":"meta-arm",                      "path":"meta-arm",              "remote":"yocto"},
     {"rev":"refs/tags/11.00.05",                            "branch":"scarthgap",               "repo":"meta-ti",                       "path":"meta-ti",               "remote":"yocto"},
     {"rev":"97e482b71688b62ac1109d16e89368122f039cbf",      "branch":"scarthgap",               "repo":"meta-security",                 "path":"meta-security",         "remote":"yocto"},
-    {"rev":"198828c44391505e967366729b73cca1c0c46cad",      "branch":"scarthgap",               "repo":"phytec/meta-phyverso-evcs",     "path":"meta-phyverso-evcs",    "remote":"github"},
+    {"rev":"fde498ffd44f70ee62ea385b99ec244dcfaa7613",      "branch":"scarthgap",               "repo":"phytec/meta-phyverso-evcs",     "path":"meta-phyverso-evcs",    "remote":"github"},
     {"rev":"370af97ea5e7c60733b93d2c5bda1d3891ea2e39",      "branch":"scarthgap",               "repo":"phytec/meta-lumissil-greenphy", "path":"meta-lumissil-greenphy","remote":"github"},
     {"rev":"aeb5b71bd25dcaa04221cfdda35a3dd4f309e214",      "branch":"scarthgap",               "repo":"meta-flutter/meta-flutter",     "path":"meta-flutter",          "remote":"github"},
     {"rev":"5c602337ea1a80fb7217eeda04e396cf90587dca",      "branch":"scarthgap",               "repo":"kraj/meta-clang",               "path":"meta-clang",            "remote":"github"},

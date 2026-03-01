@@ -5,13 +5,14 @@
 
 ### Release files
 
-- will be added when/if publicly released
+- will be added when publicly released
 
 ### Added
-
+- ERRATA file added (to document DM R5F bug)
+- hardware manual added
 
 ### Changed
-
+- EVerest moved to monorepo, release 2026.02.0-rc2
 
 ### Fixed
 
@@ -20,7 +21,7 @@
 
 ### Release files
 
-- will be added when/if publicly released
+- no public downloadable files available but can be built by checking out respective tag and building yourself
 
 ### Added
 
@@ -40,7 +41,7 @@
 
 ### Release files
 
-- will be added when ready for release
+- no public downloadable files available but can be built by checking out respective tag and building yourself
 
 ### Added
 

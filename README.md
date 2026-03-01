@@ -1,4 +1,11 @@
-# phyVERSO EVerest Yocto Image - *EXPERIMENTAL BRANCH*
+# phyVERSO EVerest Yocto Image
+
+> [!IMPORTANT]
+> Always have a look at the [Changelog](./CHANGELOG.md) and [Errata](./ERRATA.md) file when updating/moving between releases.
+
+## Hardware documentation
+
+Detailed information and documentation about the phyVERSO board in its Revision 1 can be found under [docs/phyVERSO-Manual-HW-Rev1.pdf](./docs/phyVERSO-Manual-HW-Rev1.pdf) of this repository. In the linked document you will find additional technical/electrical specifications, connector descriptions and pinouts as well as short explanations on the hardware setup for AC and DC port setups respectively.
 
 ## How to build a Yocto image with EVerest for phyVERSO
 

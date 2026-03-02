@@ -1,0 +1,70 @@
+From eac993c11cdea32eb61e5752636ff6bfa3345491 Mon Sep 17 00:00:00 2001
+From: Jonas Rockstroh <jonas.rockstroh@pionix.de>
+Date: Mon, 2 Mar 2026 16:05:36 +0000
+Subject: [PATCH] u-boot-dts: switch USB0 to host mode
+
+Signed-off-by: Jonas Rockstroh <jonas.rockstroh@pionix.de>
+---
+ .../k3-am625-phyboard-lyra-rdk-u-boot.dtsi    |  2 +-
+ arch/arm/dts/k3-am625-phyboard-lyra-rdk.dts   | 28 ++-----------------
+ 2 files changed, 4 insertions(+), 26 deletions(-)
+
+diff --git a/arch/arm/dts/k3-am625-phyboard-lyra-rdk-u-boot.dtsi b/arch/arm/dts/k3-am625-phyboard-lyra-rdk-u-boot.dtsi
+index 253ca297e12..2e04209f969 100644
+--- a/arch/arm/dts/k3-am625-phyboard-lyra-rdk-u-boot.dtsi
++++ b/arch/arm/dts/k3-am625-phyboard-lyra-rdk-u-boot.dtsi
+@@ -167,7 +167,7 @@
+ };
+ 
+ &usb0 {
+-	dr_mode = "peripheral";
++	dr_mode = "host";
+ 	bootph-all;
+ };
+ 
+diff --git a/arch/arm/dts/k3-am625-phyboard-lyra-rdk.dts b/arch/arm/dts/k3-am625-phyboard-lyra-rdk.dts
+index 2f8c20b9024..53a279a0848 100644
+--- a/arch/arm/dts/k3-am625-phyboard-lyra-rdk.dts
++++ b/arch/arm/dts/k3-am625-phyboard-lyra-rdk.dts
+@@ -354,24 +354,6 @@
+ 				  "GPIO6_ETH1_USER_RESET", "GPIO7_AUDIO_USER_RESET";
+ 	};
+ 
+-	usb-pd@22 {
+-		compatible = "ti,tps6598x";
+-		reg = <0x22>;
+-
+-		connector {
+-			compatible = "usb-c-connector";
+-			label = "USB-C";
+-			self-powered;
+-			data-role = "dual";
+-			power-role = "sink";
+-			port {
+-				usb_con_hs: endpoint {
+-					remote-endpoint = <&typec_hs>;
+-				};
+-			};
+-		};
+-	};
+-
+ 	sii9022: bridge-hdmi@39 {
+ 		compatible = "sil,sii9022";
+ 		reg = <0x39>;
+@@ -473,13 +455,9 @@
+ };
+ 
+ &usb0 {
+-	usb-role-switch;
+-
+-	port {
+-		typec_hs: endpoint {
+-			remote-endpoint = <&usb_con_hs>;
+-		};
+-	};
++	dr_mode = "host";
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_usb0_pins_default>;
+ };
+ 
+ &usb1 {

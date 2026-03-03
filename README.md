@@ -192,17 +192,24 @@ Use one partition only on the USB drive and format it with ext4.
 Uncompress the image if neccessary, e.g.:
 
 ```console
-unxz phyverso-everest-image-am62-phyverso-evcs-1.wic.xz
+unxz phyverso-everest-image.wic.xz
 ```
 
 Then copy the image file (.wic) onto the USB drive and insert it into the one USB port on the phyVERSO.
 Connect to the serial console and power up the board. Press any key to stop auto boot, then you should see the u-boot shell.
 
+You can set the filename of the wic file that will get flashed using
+
+```console
+setenv wic_image <filename>
+```
+
+This is not necessary if your file is named `phyverso-everest-image.wic` already.
+
 Now flash in the u-boot shell:
 
 ```console
 usb start
-setenv wic_image phyverso-everest-image-am62-phyverso-evcs-1.wic
 run flash_emmc
 ```
 
@@ -212,18 +219,18 @@ If you do not have the flash_emmc script, add it to the environment by copying t
 setenv flash_emmc 'test -n ${BOOT_ORDER} || setenv BOOT_ORDER system0 system1;test -n ${BOOT_system0_LEFT} || setenv BOOT_system0_LEFT 3;ext4size usb 0:1 ${wic_image};setenv counter 0;setenv offset 0;setenv block_number 0x2000;setexpr bytes_left ${filesize} - ${offset};echo start: ${bytes_left};while itest ${bytes_left}  > 0;do echo rest: ${bytes_left};setexpr copy_bytes ${block_number} * 0x200;ext4load usb 0:1 0xa0000000 ${wic_image} ${copy_bytes} ${offset};mmc write 0xa0000000 ${counter} ${block_number};             setexpr counter ${counter} + ${block_number};setexpr offset ${offset} + ${copy_bytes};echo ${counter};echo ${offset};if itest ${bytes_left} < ${copy_bytes}; then setenv bytes_left 0;else setexpr bytes_left ${bytes_left} - ${copy_bytes};fi;done;'
 ```
 
-Writing is really fast. Once done, reset the board. It should now boot into the newly installed image.
+Once done, reset the board. It should now boot into the newly installed image.
 
 If it does not find the root partition after boot, set up RAUC booting:
 
 ```console
-env  default –a
+env  default -a
 setenv doraucboot 1
 saveenv
 ```
 
 The bootloader in the EMMC boot partition is not updated with the flash_emmc script.
-To write the latest boot loader into the emmc boot partition from Linux, use:
+To write the latest boot loader into the emmc boot partition from Linux, use (where `/dev/mmcblk0p1` might be replaced with `/dev/mmcblk0p2` depending on which slot you are currently booted into):
 
 ```console
 echo 0 > /sys/class/block/mmcblk0boot0/force_ro

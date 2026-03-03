@@ -55,3 +55,6 @@ EXTRA_USERS_PARAMS = "\
 EXTRA_IMAGECMD:ext4:append = " -O ^orphan_file"
 
 IMAGE_FSTYPES:append:update = "${@bb.utils.contains("PHYVERSO_BUILD_WIC", "1", " wic.xz wic.bmap", "", d)}"
+
+IMAGE_MACHINE_SUFFIX = ""
+IMAGE_NAME_SUFFIX = ""

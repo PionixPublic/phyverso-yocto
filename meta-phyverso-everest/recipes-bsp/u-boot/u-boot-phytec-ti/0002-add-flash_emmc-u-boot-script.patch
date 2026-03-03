@@ -1,0 +1,60 @@
+From 99f5d835876745025b9a430f479d6b1a9dbf7752 Mon Sep 17 00:00:00 2001
+From: Jonas Rockstroh <jonas.rockstroh@pionix.de>
+Date: Mon, 2 Mar 2026 17:41:58 +0000
+Subject: [PATCH] add flash_emmc u-boot script
+
+Signed-off-by: Jonas Rockstroh <jonas.rockstroh@pionix.de>
+---
+ board/phytec/phycore_am62x/phycore_am62x.env |  1 +
+ include/env/phytec/flash_emmc.env            | 29 ++++++++++++++++++++
+ 2 files changed, 30 insertions(+)
+ create mode 100644 include/env/phytec/flash_emmc.env
+
+diff --git a/board/phytec/phycore_am62x/phycore_am62x.env b/board/phytec/phycore_am62x/phycore_am62x.env
+index 65ef231a463..f7f4bf92045 100644
+--- a/board/phytec/phycore_am62x/phycore_am62x.env
++++ b/board/phytec/phycore_am62x/phycore_am62x.env
+@@ -2,6 +2,7 @@
+ #include <env/phytec/k3_mmc.env>
+ #include <env/phytec/k3_net.env>
+ #include <env/phytec/k3_spi.env>
++#include <env/phytec/flash_emmc.env>
+ 
+ fdtaddr=0x88000000
+ loadaddr=0x82000000
+diff --git a/include/env/phytec/flash_emmc.env b/include/env/phytec/flash_emmc.env
+new file mode 100644
+index 00000000000..4e00abb0199
+--- /dev/null
++++ b/include/env/phytec/flash_emmc.env
+@@ -0,0 +1,29 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
++
++wic_image=phyverso-everest-image.wic
++
++flash_emmc=
++    test -n ${BOOT_ORDER} || setenv BOOT_ORDER system0 system1;
++    test -n ${BOOT_system0_LEFT} || setenv BOOT_system0_LEFT 3;
++    ext4size usb 0:1 ${wic_image};
++    setenv counter 0;
++    setenv offset 0;
++    setenv block_number 0x2000;
++    setexpr bytes_left ${filesize} - ${offset};
++
++    echo start: ${bytes_left};
++    while itest ${bytes_left}  > 0; do
++        echo rest: ${bytes_left};
++        setexpr copy_bytes ${block_number} * 0x200;
++        ext4load usb 0:1 0xa0000000 ${wic_image} ${copy_bytes} ${offset};
++        mmc write 0xa0000000 ${counter} ${block_number};
++        setexpr counter ${counter} + ${block_number};
++        setexpr offset ${offset} + ${copy_bytes};
++        echo ${counter};
++        echo ${offset};
++        if itest ${bytes_left} < ${copy_bytes}; then
++            setenv bytes_left 0;
++        else
++            setexpr bytes_left ${bytes_left} - ${copy_bytes};
++        fi;
++    done;
+\ No newline at end of file

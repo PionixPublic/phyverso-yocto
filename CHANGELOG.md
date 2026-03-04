@@ -1,11 +1,16 @@
 
 # Change Log
 
-## [2.2.0] - Unreleased
+## [2.2.0] - 2026-03-04
 
 ### Release files
 
-- will be added when publicly released
+- http://pionix-update.de/phyverso/2.2.0/phyverso-everest-bundle-2.2.0-20260304170137.raucb
+- http://pionix-update.de/phyverso/2.2.0/phyverso-everest-image-2.2.0-20260304170137.partup
+- http://pionix-update.de/phyverso/2.2.0/phyverso-everest-image-2.2.0-20260304170137.wic.bmap
+- http://pionix-update.de/phyverso/2.2.0/phyverso-everest-image-2.2.0-20260304170137.wic.xz
+- SDK: http://pionix-update.de/phyverso/2.2.0/phytec-ampliphy-rauc-glibc-x86_64-phyverso-everest-image-aarch
+64-toolchain-BSP-Yocto-Ampliphy-AM62x-PD24.1.2-phyVERSO-EVCS-devel.sh
 
 ### Added
 - ERRATA file added (to document DM R5F bug)
@@ -76,7 +81,7 @@
 
 ### Release files
 
-- will be added when ready for release / for now only given to specific customers directly
+- for now only given to specific customers directly; can be built by checking out respective tag and building yourself
 
 ### Added
 
@@ -95,7 +100,7 @@
 
 ### Release files
 
-- will be added when ready for release to public / for now only given to specific customers directly
+- for now only given to specific customers directly / can be built by checking out respective tag and building yourself
 
 ### Added
 

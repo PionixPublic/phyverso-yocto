@@ -13,9 +13,14 @@
 
 ### Changed
 - EVerest moved to monorepo, release 2026.02.0-rc2
+- image/bundle naming scheme changed; dropped machine suffix, added image/bundle recipe version to output filenames; dropped .rootfs suffix
+- moved repo to public PionixPublic GitHub org
+- removed README instructions regarding building from PionixPro/git.pionix.com repositories
+- added README information on serial devices/RS485 ports
 
 ### Fixed
-
+- U-Boot fix to enable flashing via USB/WIC again
+- fix flash_emmc u-boot script
 
 ## [2.1.0] - Unreleased
 

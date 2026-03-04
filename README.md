@@ -9,63 +9,17 @@ Detailed information and documentation about the phyVERSO board in its Revision 
 
 ## How to build a Yocto image with EVerest for phyVERSO
 
-### Step 0: Preparations when using git.pionix.com
-
-If you are using git.pionix.com to access this repository, you will have to add your SSH keys at https://git.pionix.com/user/settings/keys.
-
-> [!IMPORTANT]
-> Please only use the SSH URL to access the repositories on git.pionix.com
-> because using HTTPS can break things down the line.
-
-During building, the build process may need your SSH key password for
-accessing sources and library repositories.
-To also make the non-interactive phases of the build process use your password,
-you will have to set your SSH key password in the current SSH session:
-
-```
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/your_key_file
-```
-
-Please adjust the call of `ssh-add` to use your existing SSH key file.
-
-After that, you will be prompted for entering your password for the SSH key
-file.
-
-This will start the ssh-agent and adds your SSH key file to your local SSH
-session.
-
-> [!TIP]
-> For more information, see
-> https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
-
-
 ### Step 1: Clone this repository
 Create a folder (e.g. pionix) where everything will be placed.
 
-```
+```console
 mkdir pionix
 cd pionix
-git clone ssh://forgejo@git.pionix.com/Pionix/phyverso-yocto.git
-```
-
-If you are using the PionixPro/phyverso-yocto repository on GitHub, you will have to clone this URL:
-
-```
-git clone git@github.com:PionixPro/phyverso-yocto.git
+git clone https://github.com/PionixPublic/phyverso-yocto.git
 ```
 
 > [!IMPORTANT]
-> By default you will have cloned the default branch (latest stable image release). If you want to build a different branch, for example an experimental branch, please run `git checkout <BRANCHNAME>` in the directory you just cloned.
-
-### Step 1.1: Modifications needed when using PionixPro
-
-When using the PionixPro/phyverso-yocto repository on GitHub, you will have to uncomment/set the following parameters in `build/conf/local.conf`:
-
-```
-GIT_REPOSITORY_URL = "git://git@github.com/PionixPro"
-PREFIX_GIT_REPOSITORY = ""
-```
+> By default you will have cloned the default branch (latest development branch). If you want to build a different branch/stable release, please run `git checkout <BRANCHNAME/TAGNAME>` in the directory you just cloned.
 
 > [!NOTE]
 > For now, the PionixCloud repository is not mirrored and only used for
@@ -79,7 +33,7 @@ we are using a tool, which is part of this repository.
 You can find it in the root folder.
 The tool supports the two operations `init` and `sync`.
 
-```
+```console
 $ ./setup --help
 usage: setup [-h] [--init] [--sync] [--sync_method {fetch,pull}]
 
@@ -95,7 +49,7 @@ optional arguments:
 
 The very first time you want to initialize the layers, all you have to do is to run the tool with the argument `--init`:
 
-```
+```console
 $ ./setup --init
 ```
 
@@ -133,13 +87,13 @@ You can change the parameters to your needs before building.
 Parameters in `local.conf` usually also have some kind of explanation in the form of comments next to them.
 
 > [!NOTE]
-> This set of parameters will be subject to changes, current README is WIP.
+> This set of parameters will be subject to changes. Please adjust notable parameters in this README when adding new features.
 
 
 #### Build the image
 To start building the image you need to source the yocto environment:
 
-```
+```console
 $ source ../source/poky/oe-init-build-env
 This is the default build configuration for a phyVERSO EVerest image.
 ### Shell environment set up for builds. ###
@@ -160,22 +114,22 @@ You are ready to build an image or a bundle that you can flash with the RAUC too
 
 If you just want the image run:
 
-```
+```console
 $ bitbake phyverso-everest-image
 ```
 
 If you want the RAUC bundle, run:
 
-```
+```console
 $ bitbake phyverso-everest-bundle
 ```
 
-Depending on your computer, you might need to go for a coffee a walk or both.
+Depending on your computer, you might need to go for a coffee, a walk or both.
 
 #### Building the SDK
 After sourcing the yocto environment you can also build an SDK by executing
 
-```
+```console
 $ bitbake phyverso-everest-image -c populate_sdk
 ```
 
@@ -185,6 +139,8 @@ If the pre-installed image on the SOM provides RAUC support, you can install the
 ```console
 rauc install <URL or path to bundle file>
 ```
+
+When updating from older releases, `rauc install` might throw an error because of incompatible machine names. You can override/force an update by adding the `--ignore-compatible` flag. 
 
 In case the currently installed Linux image on the SOM does not support RAUC updates, you can also flash a new wic image via USB.
 Use one partition only on the USB drive and format it with ext4.
@@ -224,7 +180,7 @@ Once done, reset the board. It should now boot into the newly installed image.
 If it does not find the root partition after boot, set up RAUC booting:
 
 ```console
-env  default -a
+env default -a
 setenv doraucboot 1
 saveenv
 ```
@@ -245,7 +201,6 @@ If you are using a blank new device, you will need to enable emmc boot partition
 This is only once per lifetime.
 
 ```console
-
 mmc bootpart enable 1 1 /dev/mmcblk0
 mmc bootbus set single_backward x1 x8 /dev/mmcblk0
 mmc hwreset enable /dev/mmcblk0
@@ -336,18 +291,19 @@ You can see which overlays are activated by executing `fw_printenv overlays`
 inside the shell.
 The overlays variable can be set with
 
-`fw_setenv overlays "<list of whitespace separated dtbo files>"`
+```console
+fw_setenv overlays "<list of whitespace separated dtbo files>"
+```
 
-So for example, to activate the cc33xx WiFi module and an lvds attached
+So for example, to activate the cc33xx WiFi/BLE module and an lvds attached
 display, the command to execute would look like this:
 
 ```console
 fw_setenv overlays "cc33xx.dtbo dd0700mc01_lvds.dtbo"
 ```
 
-Currently we do not yet support u-boot uEnv.txt files to
-specify the selected overlays to be used.
-We plan on adding this feature in upcoming releases.
+Currently we do not yet support u-boot environment files to specify the selected overlays to be used.
+This functionality can be added by migrating to a PD25.x.x release on the PHYTEC layers (meta-phyverso-evcs migration to PD25.x.x is still in development by PHYTEC, see ERRATA).
 
 When trying to add custom overlays, mind that currently,
 the boot partitions that u-boot sees are not accessible from `/boot` when
@@ -360,6 +316,12 @@ Which `/dev/mmcblk0pX` partition you need to mount will depend on which RAUC
 slot you are on.
 You can see the active one by executing `rauc status` and mount the boot.X
 partition accordingly.
+
+Currently available overlays are:
+
+- `cc33xx.dtbo` - WiFi/BLE module
+- `dd0700mc01_lvds.dtbo` - PHYTEC provided 7" display
+- `k3-am62-oldi-ac209a.dtbo` - PHYTEC provided 10" display
 
 ## Export and use user GPIOs by name (gpio sysfs)
 
@@ -403,3 +365,11 @@ You can manually change those files on the target system after building/installi
 PHYVERSO_MAIN_MCAN0_BITRATE = "250000"
 PHYVERSO_MCU_MCAN0_BITRATE = "250000"
 ```
+
+## Serial devices
+
+The serial connection to the MCU that is running the low-level safety related functions is avaiable on `/dev/ttyS6`@115200 Baud.
+
+The isolated RS485 on X34 is available on `/dev/ttyS4` and its on-board drivers DE/nRE line is muxed as a normal GPIO. That's why you will have to configure the `SerialCommHub` EVerest module to use a GPIO to set transceiver directions instead of using an inbuilt UARTs RTS pin. How this is done can be seen in the [template example config](./meta-phyverso-everest/recipes-core/everest/everest-phyverso-config/config-phyverso-template.yaml#L112-L120) that you can adjust to your needs (comment in/out blocks you want to get AC/DC/mixed configurations).
+
+The non-isolated RS484 on X35 is available on `/dev/ttyS5` and it's transceivers direction line will be driven by the respective UARTs RTS line, so configuring this as a GPIO like for X34 should not be needed.

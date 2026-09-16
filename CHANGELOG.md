@@ -1,6 +1,19 @@
 
 # Change Log
 
+## [2.2.1] - 2026-11-16
+
+### Release files
+
+Not publicly hosted anymore.
+
+### Added
+
+### Changed
+- MCU FW updated to 2.0.1
+
+### Fixed
+
 ## [2.2.0] - 2026-03-04
 
 ### Release files

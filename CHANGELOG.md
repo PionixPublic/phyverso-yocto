@@ -22,8 +22,7 @@ Not publicly hosted anymore.
 - http://pionix-update.de/phyverso/2.2.0/phyverso-everest-image-2.2.0-20260304170137.partup
 - http://pionix-update.de/phyverso/2.2.0/phyverso-everest-image-2.2.0-20260304170137.wic.bmap
 - http://pionix-update.de/phyverso/2.2.0/phyverso-everest-image-2.2.0-20260304170137.wic.xz
-- SDK: http://pionix-update.de/phyverso/2.2.0/phytec-ampliphy-rauc-glibc-x86_64-phyverso-everest-image-aarch
-64-toolchain-BSP-Yocto-Ampliphy-AM62x-PD24.1.2-phyVERSO-EVCS-devel.sh
+- SDK: http://pionix-update.de/phyverso/2.2.0/phytec-ampliphy-rauc-glibc-x86_64-phyverso-everest-image-aarch64-toolchain-BSP-Yocto-Ampliphy-AM62x-PD24.1.2-phyVERSO-EVCS-devel.sh
 
 ### Added
 - ERRATA file added (to document DM R5F bug)
